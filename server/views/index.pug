@@ -1,0 +1,20 @@
+//- Designed via https://webflow.com/design/ingoodcompany-info
+doctype html
+html(lang="en")
+  head
+    title ingoodcompany.info - Research a company for your job search
+  body
+    .w-container
+      .w-row
+        .w-col.w-col-6
+          h1 ingoodcompany.info
+          h4 Research a company for your job search
+          //- TODO: Add links to all these websites
+          p Look up a company by its website and get information from Glassdoor as well as links to profiles on Crunchbase, LinkedIn, and more!
+      .w-row
+        .w-col.w-col-6
+          form
+            label(for="website") Website
+            input(type="text", name="website", autofocus="true", placeholder="google.com", required)
+            input(type="submit", value="Search")
+
