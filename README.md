@@ -8,7 +8,22 @@ Website to research potential employers, [ingoodcompany.info][]
 [findwork.co]: https://findwork.co/
 
 ## Getting started
-*Coming soon!*
+To run our development server locally, run the following:
+
+```bash
+# Clone the repository
+git clone https://github.com/twolfson/ingoodcompany.info
+cd ingoodcompany.info
+
+# Install our dependencies
+npm install
+
+# Run the server
+npm start
+# Ready! Available at http://localhost:3000
+```
+
+The server should be accessible via your browser at <http://localhost:3000/>
 
 ## Documentation
 *Coming soon!*
