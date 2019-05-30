@@ -2,6 +2,7 @@
   "version": 2,
 
   "name": "ingoodcompany.info",
+  "alias": "ingoodcompany.info",
   "builds": [
     {"src": "server/index.js", "use": "@now/node"}
   ],
