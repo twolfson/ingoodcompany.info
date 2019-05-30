@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/twolfson/ingoodcompany.info#readme",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "pug": "~2.0.3"
+  },
   "devDependencies": {
     "foundry": "~4.4.2",
     "foundry-release-git": "~2.0.3",
