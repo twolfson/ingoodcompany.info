@@ -30,7 +30,11 @@
   "foundry": {
     "releaseCommands": [
       "foundry-release-git",
-      "foundry-release-npm"
+      "foundry-release-npm",
+      {
+        "type": "customCommand",
+        "publish": "now"
+      }
     ]
   }
 }
