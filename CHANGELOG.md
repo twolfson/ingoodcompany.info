@@ -1,4 +1,6 @@
 # ingoodcompany.info changelog
+0.3.0 - Added favicon
+
 0.2.1 - Added missing `--target production` to alias on deploy
 
 0.2.0 - Added deployment via `now`
