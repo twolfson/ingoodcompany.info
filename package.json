@@ -16,5 +16,17 @@
     "url": "https://github.com/twolfson/ingoodcompany.info/issues"
   },
   "homepage": "https://github.com/twolfson/ingoodcompany.info#readme",
-  "private": true
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "foundry": "~4.4.2",
+    "foundry-release-git": "~2.0.3",
+    "foundry-release-npm": "~2.0.2"
+  },
+  "foundry": {
+    "releaseCommands": [
+      "foundry-release-git",
+      "foundry-release-npm"
+    ]
+  }
 }
