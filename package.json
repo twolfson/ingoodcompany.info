@@ -1,0 +1,20 @@
+{
+  "name": "ingoodcompany.info",
+  "version": "1.0.0",
+  "description": "Website to research potential employers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twolfson/ingoodcompany.info.git"
+  },
+  "author": "Todd Wolfson <todd@twolfson.com> (http://twolfson.com/)",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/twolfson/ingoodcompany.info/issues"
+  },
+  "homepage": "https://github.com/twolfson/ingoodcompany.info#readme",
+  "private": true
+}
