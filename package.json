@@ -33,7 +33,7 @@
       "foundry-release-npm",
       {
         "type": "customCommand",
-        "publish": "now"
+        "publish": "now --target production"
       }
     ]
   }
