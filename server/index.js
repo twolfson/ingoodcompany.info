@@ -5,7 +5,7 @@ const pug = require('pug');
 // Preload our views
 // TODO: Set up NODE_ENV for project
 let pugOptions = {
-  pretty: process.env.NODE_ENV === 'production'
+  pretty: process.env.NODE_ENV !== 'production'
 };
 const indexView = pug.compileFile(__dirname + '/views/index.pug', pugOptions);
 
