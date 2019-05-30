@@ -11,6 +11,7 @@ const indexView = pug.compileFile(__dirname + '/views/index.pug', pugOptions);
 
 // Define our main handler
 function main(req, res) {
+  // TODO: Add caching to response
   res.end(indexView());
 }
 module.exports = main;
