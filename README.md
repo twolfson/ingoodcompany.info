@@ -26,7 +26,25 @@ npm start
 The server should be accessible via your browser at <http://localhost:3000/>
 
 ## Documentation
-*Coming soon!*
+### Updating favicons
+Favicons are maintained via <https://realfavicongenerator.net/> with `resources/favicon.svg`
+
+Follow the instructions provided by the website
+
+### Releasing
+To perform a release, run the following:
+
+```bash
+# If this is your first release, then login to `now` and install `foundry.cli`
+./node_modules/.bin/now login
+npm install -g foundry.cli
+
+# Update the changelog
+pico CHANGELOG.md
+
+# Perform a release
+foundry release <version>
+```
 
 ## Contributing
 *Coming soon!*

@@ -4,6 +4,7 @@
   "name": "ingoodcompany.info",
   "alias": "ingoodcompany.info",
   "builds": [
+    {"src": "browser/**.*", "use": "@now/static"},
     {"src": "server/index.js", "use": "@now/node"}
   ],
   "routes": [
