@@ -1,5 +1,2 @@
 # Node.js/npm development files
 node_modules/
-
-# Project development files
-*.html
