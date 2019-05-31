@@ -4,7 +4,7 @@ const pug = require('pug');
 const semverVersion = require('../package.json').version;
 
 // Define common constants
-// TODO: NODE_ENV is set up by default by `now` but we should make it explicit in a file too
+// DEV: NODE_ENV is set up by `now` (e.g. `development`, `production`)
 const PRODUCTION_TTL = 10 * 60; // 10 minutes
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 let pugOptions = {
