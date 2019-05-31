@@ -3,17 +3,25 @@
 const pug = require('pug');
 const semverVersion = require('../package.json').version;
 
-// Preload our views
+// Define common constants
 // TODO: NODE_ENV is set up by default by `now` but we should make it explicit in a file too
+const PRODUCTION_TTL = 10 * 60; // 10 minutes
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 let pugOptions = {
-  cache: process.env.NODE_ENV === 'production',
-  pretty: process.env.NODE_ENV !== 'production',
+  cache: IS_PRODUCTION,
+  pretty: !IS_PRODUCTION,
 };
 let commonLocals = { semverVersion };
 
 // Define our main handler
 function main(req, res) {
-  // TODO: Add cache header to response
+  // Set up caching for our response
+  // https://zeit.co/docs/v2/deployments/concepts/cdn-and-global-distribution/#full-cdn
+  if (IS_PRODUCTION) {
+    res.header('Cache-Control', `s-maxage=${PRODUCTION_TTL}, max-age=${PRODUCTION_TTL}`);
+  }
+
+  // Perform our render
   // DEV: We separate `compileFile` from rendering to avoid conflating options into `locals` accidentally
   let indexView = pug.compileFile(__dirname + '/views/index.pug', pugOptions);
   res.end(indexView(commonLocals));
