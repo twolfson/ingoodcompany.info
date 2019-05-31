@@ -21,7 +21,7 @@ html(lang="en")
   body
     .container
       .row
-        .col-6
+        .col-lg-6
           h1 ingoodcompany.info
           h4 Research a company for your job search
           p
@@ -34,19 +34,19 @@ html(lang="en")
             a(href="https://www.linkedin.com/") LinkedIn
             | , and more!
       .row.mb-4
-        .col-6
+        .col-lg-6
           form
             .form-group
               label(for="website") Website
               input#website.form-control(type="text", name="website", autofocus="true", placeholder="google.com", required)
             button.btn.btn-primary(type="submit") Search
       .row
-        .col-6
+        .col-lg-6
           h4 Example results
       .card: .card-body
-        .row.mb-3
-          .col-6
-            div
+        .row
+          .col-lg-6
+            p
               strong Glassdoor results:
               br
               | Name: Google
@@ -75,8 +75,8 @@ html(lang="en")
               br
               a(target="_blank", href="https://www.glassdoor.com/Reviews/google-reviews-SRCH_KE0,6.htm")
                 | Powered by &lt;Glassdoor image&gt; and DuckDuckGo
-          .col-6
-            div
+          .col-lg-6
+            p
               strong External links:
               br
               u General
