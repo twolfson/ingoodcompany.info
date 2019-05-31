@@ -18,7 +18,7 @@ function main(req, res) {
   // Set up caching for our response
   // https://zeit.co/docs/v2/deployments/concepts/cdn-and-global-distribution/#full-cdn
   if (IS_PRODUCTION) {
-    res.header('Cache-Control', `s-maxage=${PRODUCTION_TTL}, max-age=${PRODUCTION_TTL}`);
+    res.setHeader('Cache-Control', `public, s-maxage=${PRODUCTION_TTL}, max-age=${PRODUCTION_TTL}`);
   }
 
   // Perform our render
