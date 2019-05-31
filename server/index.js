@@ -2,13 +2,11 @@
 // DEV: We could increase boot time by pre-compiling all views to functions
 const pug = require('pug');
 
-// WARNING: `now dev` seems to not cache bust when we adjust `index.pug`,
-//   even with this `renderFile` inline approach...
-
 // Preload our views
 // TODO: NODE_ENV is set up by default by `now` but we should make it explicit in a file too
 let pugOptions = {
-  cache: process.env.NODE_ENV === 'production',
+  // DEV: Technically we're always cached since `now dev` doesn't seem to copy `.pug` changes =(
+  cache: true,
   pretty: process.env.NODE_ENV !== 'production',
 };
 
