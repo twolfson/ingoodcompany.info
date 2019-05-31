@@ -108,8 +108,21 @@ html(lang="en")
               br
               a(href="mailto:todd@twolfson.com?subject=ingoodcompany.info%20link%20idea") Want more links? Click here to send us an email
         .text-muted
-          //- Last updated: 2019-05-31 01:10:58.714-07:00
-          = "Last updated: " + dayjs().format('YYYY-MM-DD HH:mm:ss.SSSZ')
+          //- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat/format
+          -
+            let lastUpdatedStr = new Intl.DateTimeFormat('en-us', {
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+              hour12: true,
+
+              day: 'numeric',
+              month: 'short',
+              year: 'numeric',
+
+              timeZone: 'America/Los_Angeles'
+            }).format(new Date());
+          = "Last updated: " + lastUpdatedStr
       hr
       p.text-center
         = "Made with <3 by "

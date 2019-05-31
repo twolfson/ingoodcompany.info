@@ -1,6 +1,5 @@
 // Load in our dependencies
 // DEV: We could increase boot time by pre-compiling all views to functions
-const dayjs = require('dayjs');
 const pug = require('pug');
 const semverVersion = require('../package.json').version;
 
@@ -10,7 +9,7 @@ let pugOptions = {
   cache: process.env.NODE_ENV === 'production',
   pretty: process.env.NODE_ENV !== 'production',
 };
-let commonLocals = { dayjs, semverVersion };
+let commonLocals = { semverVersion };
 
 // Define our main handler
 function main(req, res) {
