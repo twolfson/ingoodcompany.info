@@ -1,4 +1,6 @@
 # ingoodcompany.info changelog
+0.6.0 - Added attribution for ZEIT Now
+
 0.5.0 - Added cache and cache hit/miss indicators
 
 0.4.0 - Added better development server option
