@@ -11,6 +11,8 @@ const PORT = 3001;
 function main() {
   let app = express();
   app.get('/', require('./index.js'));
+  app.use('/browser', express.static(__dirname + '/../browser'));
+
   app.listen(PORT, '127.0.0.1');
   console.log(`Server listening at http://localhost:${PORT}/`);
 }
