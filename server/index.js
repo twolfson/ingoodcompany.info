@@ -5,8 +5,7 @@ const pug = require('pug');
 // Preload our views
 // TODO: NODE_ENV is set up by default by `now` but we should make it explicit in a file too
 let pugOptions = {
-  // DEV: Technically we're always cached since `now dev` doesn't seem to copy `.pug` changes =(
-  cache: true,
+  cache: process.env.NODE_ENV === 'production',
   pretty: process.env.NODE_ENV !== 'production',
 };
 
