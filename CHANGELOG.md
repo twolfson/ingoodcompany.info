@@ -1,4 +1,6 @@
 # ingoodcompany.info changelog
+0.5.0 - Added cache and cache hit/miss indicators
+
 0.4.0 - Added better development server option
 
 0.3.0 - Added favicon
