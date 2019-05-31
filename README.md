@@ -8,7 +8,7 @@ Website to research potential employers, [ingoodcompany.info][]
 [findwork.co]: https://findwork.co/
 
 ## Getting started
-To run our development server locally, run the following:
+To run our staging server locally, run the following:
 
 ```bash
 # Clone the repository
@@ -26,6 +26,18 @@ npm start
 The server should be accessible via your browser at <http://localhost:3000/>
 
 ## Documentation
+### Development
+Our staging server doesn't cache-bust consistently (`now dev` is relatively new at the time of development). As a result, we use an `express` server with restarts powered by `nodemon` for development
+
+To run our development server, run the following:
+
+```bash
+npm run start-dev
+# Server listening at http://localhost:3001/
+```
+
+The server should be accessible via your browser at <http://localhost:3001/>
+
 ### Updating favicons
 Favicons are maintained via <https://realfavicongenerator.net/> with `resources/favicon.svg`
 
