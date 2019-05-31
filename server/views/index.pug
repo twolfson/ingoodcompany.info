@@ -35,7 +35,7 @@ html(lang="en")
         .col-6
           h4 Example results
       .card: .card-body
-        .row
+        .row.mb-3
           .col-6
             div
               strong Glassdoor results:
@@ -107,6 +107,9 @@ html(lang="en")
               a(href="#") Powered by DuckDuckGo
               br
               a(href="mailto:todd@twolfson.com?subject=ingoodcompany.info%20link%20idea") Want more links? Click here to send us an email
+        .text-muted
+          //- Last updated: 2019-05-31 01:10:58.714-07:00
+          = "Last updated: " + dayjs().format('YYYY-MM-DD HH:mm:ss.SSSZ')
       hr
       p.text-center
         = "Made with <3 by "
