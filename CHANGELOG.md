@@ -1,4 +1,6 @@
 # ingoodcompany.info changelog
+0.7.0 - Updated links and cleaned up TODOs
+
 0.6.0 - Added attribution for ZEIT Now
 
 0.5.0 - Added cache and cache hit/miss indicators
