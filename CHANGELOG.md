@@ -1,4 +1,6 @@
 # ingoodcompany.info changelog
+1.4.0 - Added analytics via Mixpanel
+
 1.3.0 - Added --meta version and git_sha to deployments
 
 1.2.1 - Added more architecture and contributing documentation
