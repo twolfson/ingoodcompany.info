@@ -7,6 +7,15 @@ const express = require('express');
 // Define our port
 const PORT = 3001;
 
+// Define an async error handler
+function catchAsyncError(fn) {
+  return function catchAsyncErrorFn (req, res, next) {
+    fn(req, res)
+      .then(next)
+      .catch(next);
+  };
+}
+
 // Create and start our server
 function main() {
   let app = express();
@@ -15,7 +24,7 @@ function main() {
     req.headers['x-real-ip'] = req.ip;
     next();
   });
-  app.get('/', require('./index.js'));
+  app.get('/', catchAsyncError(require('./index.js')));
   app.use('/browser', express.static(__dirname + '/../browser'));
 
   app.listen(PORT, '127.0.0.1');

@@ -1,5 +1,6 @@
 // Load in our dependencies
 const assert = require('assert');
+const fetch = require('node-fetch');
 const querystring = require('querystring');
 const nextTickPromise = require('util').promisify(process.nextTick);
 
@@ -22,6 +23,7 @@ exports.findFirstCompany = async function (req, searchTerm) {
     return null;
   }
 
+  // Perform our search
   // https://www.glassdoor.com/developer/companiesApiActions.htm
   let apiUrl = 'https://api.glassdoor.com/api/api.htm?' + querystring.stringify({
     v: 1,
@@ -35,13 +37,26 @@ exports.findFirstCompany = async function (req, searchTerm) {
     pn: 1, // Page number
     ps: 1, // Page size (default is 20)
   });
+  let apiRes = await fetch(apiUrl);
+
+  // If we had a bad response, then return nothing
+  // DEV: Empty responses are still successful
+  //   {status: 200} + {success: true, status: 'OK', response: {'attributionURL': ..., employers: []}
+  if (apiRes.status !== 200) {
+    throw new Error('Unexpected Glassdoor status (' + apiRes.status + ') for search "' + searchTerm + '". Expected 200');
+  }
+  let apiJson = await apiRes.json();
+  if (apiJson.success !== true) {
+    throw new Error('Unexpected Glassdoor success (' + apiRes.success + ') for search "' + searchTerm + '". Expected `success: true`');
+  }
+  console.log(apiJson);
 };
 
 // If we're being run directly, then run a search
 // DEV: We need to run `export $(cat .env | xargs)` first to get our environment variables
 if (require.main === module) {
   // DEV: Request info pulled from `console.log(req)` in `now dev`
-  console.info(exports.findFirstCompany({
+  exports.findFirstCompany({
     headers: {
       'user-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:67.0) Gecko/20100101 Firefox/67.0',
       accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -60,5 +75,6 @@ if (require.main === module) {
       'x-now-log-id': 'BBB',
       'x-zeit-co-forwarded-for': '::ffff:127.0.0.1'
     }
-  }, 'Google'));
+  }, 'Google')
+  .then(console.info);
 }
