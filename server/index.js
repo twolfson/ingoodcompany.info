@@ -17,7 +17,7 @@ app.set('view engine', 'pug');
 app.locals = {
   defaultQuery: 'Google',
   semverVersion,
-  pretty: !IS_PRODUCTION
+  pretty: !IS_PRODUCTION,
 };
 
 // Define our routes
@@ -28,16 +28,16 @@ function setCommonCache(res) {
     res.setHeader('Cache-Control', `public, s-maxage=${PRODUCTION_TTL}, max-age=${PRODUCTION_TTL}`);
   }
 }
-app.get('/', callbackify(async function rootShow (req, res) {
+app.get('/', callbackify(async function rootShow(req, res) {
   setCommonCache(res);
   let glassdoorInfo = await Glassdoor.findFirstCompany(req, app.locals.defaultQuery);
-  res.render('index', { glassdoorInfo });
+  res.render('index', {glassdoorInfo});
 }));
-app.get('/search', callbackify(async function searchShow (req, res) {
+app.get('/search', callbackify(async function searchShow(req, res) {
   setCommonCache(res);
   let query = req.query.query || '';
   let glassdoorInfo = await Glassdoor.findFirstCompany(req, query);
-  res.render('search', { query, glassdoorInfo });
+  res.render('search', {query, glassdoorInfo});
 }));
 
 // Export our app as our module.exports

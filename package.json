@@ -4,9 +4,11 @@
   "description": "Website to research potential employers",
   "main": "index.js",
   "scripts": {
+    "precheck": "eslint server/",
+    "lint": "eslint server/ --max-warnings 0",
     "start": "now dev",
     "start-dev": "export $(cat .env | xargs) && nodemon server/dev.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,8 @@
     "pug": "~2.0.3"
   },
   "devDependencies": {
+    "eslint": "~5.16.0",
+    "eslint-config-twolfson": "~1.0.0",
     "foundry": "~4.4.2",
     "foundry-release-git": "~2.0.3",
     "foundry-release-npm": "~2.0.2",

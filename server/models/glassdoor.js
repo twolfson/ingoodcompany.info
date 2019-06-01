@@ -47,7 +47,8 @@ exports.findFirstCompany = async function (req, query) {
   }
   let apiJson = await apiRes.json();
   if (apiJson.success !== true) {
-    throw new Error('Unexpected Glassdoor success (' + apiRes.success + ') for search "' + query + '". Expected `success: true`');
+    throw new Error(
+      'Unexpected Glassdoor success (' + apiRes.success + ') for search "' + query + '". Expected `success: true`');
   }
 
   // Unpack our data
@@ -129,5 +130,5 @@ if (require.main === module) {
       'x-zeit-co-forwarded-for': '::ffff:127.0.0.1'
     }
   }, 'Google')
-  .then(console.info);
+    .then(console.info); // eslint-disable-line no-console
 }
