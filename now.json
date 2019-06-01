@@ -12,6 +12,7 @@
   ],
 
   "env": {
-    "FOO": "@foo"
+    "GLASSDOOR_API_ID": "@glassdoor_api_id",
+    "GLASSDOOR_API_KEY": "@glassdoor_api_key"
   }
 }
