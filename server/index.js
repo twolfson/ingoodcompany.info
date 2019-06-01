@@ -31,8 +31,12 @@ app.get('/', callbackify(async function rootShow (req, res) {
   setCommonCache(req);
   let glassdoorInfo = await Glassdoor.findFirstCompany(req, app.locals.defaultQuery);
   res.render('index', { glassdoorInfo });
-  // let glassdoorInfo = await Glassdoor.findFirstCompany(req, query);
-  // res.render('index', { query, glassdoorInfo }));
+}));
+app.get('/search', callbackify(async function searchShow (req, res) {
+  setCommonCache(req);
+  let query = req.query.query || '';
+  let glassdoorInfo = await Glassdoor.findFirstCompany(req, query);
+  res.render('search', { query, glassdoorInfo });
 }));
 
 // Export our app as our module.exports
