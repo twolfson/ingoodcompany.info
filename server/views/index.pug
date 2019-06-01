@@ -4,18 +4,7 @@ block title
   title ingoodcompany.info - Research a company for your job search
 
 block content
-  +pageHeading()
-  .row
-    .col-lg-6
-      p
-        | Look up a company by its name and get information from
-        = " "
-        a(href="https://www.glassdoor.com/") Glassdoor
-        = " as well as links to profiles on "
-        a(href="https://www.crunchbase.com/") Crunchbase
-        = ", "
-        a(href="https://www.linkedin.com/") LinkedIn
-        | , and more!
+  +pageHeading({includeDescription: true})
   +searchForm(null, {autofocus: 'true'})
   .row
     .col-lg-6
