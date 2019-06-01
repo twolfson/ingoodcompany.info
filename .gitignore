@@ -1,2 +1,5 @@
 # Node.js/npm development files
 node_modules/
+
+# Project secrets
+.env
