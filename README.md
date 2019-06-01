@@ -38,8 +38,9 @@ In addition to this, we have the following setup and have made the following cho
 
 - `browser/` is public facing assets (e.g. images, CSS)
 - `server/` is server-run code (e.g. models, controllers)
+  - JavaScript version is ES2017 due to its support for `async`, `await`, and template strings which we're trying out for visually simpler code
 - There is no database, we're relying strictly on CDN caching to align with third party rate limit expectations
-    - This may eventually require a database and queue system but we're trying to see if lower effort is tolerable for now
+  - This may eventually require a database and queue system but we're trying to see if lower effort is tolerable for now
 - CI is done via [CircleCI][] which allows for easy debugging via SSH
 
 [ZEIT Now]: https://zeit.co/now
