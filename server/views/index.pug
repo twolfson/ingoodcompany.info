@@ -49,33 +49,39 @@ html(lang="en")
             p
               strong Glassdoor results:
               br
-              | Name: Google
-              br
-              = "Website: "
-              a(target="_blank", href="www.google.com") www.google.com
-              br
-              | Industry: Internet
-              br
-              | Overall rating: 4.3/5.0 (10820 ratings)
-              br
-              | CEO review: 93% approve, 7% disapprove (3490 ratings)
-              br
-              | Culture and values rating: 4.2/5.0
-              br
-              | Senior leadership rating: 3.8/5.0
-              br
-              | Compensation and benefits rating: 4.3/5.0
-              br
-              | Career opportunities rating: 4.1/5.0
-              br
-              | Work/Life balance rating: 4.1/5.0
-              br
-              a(target="_blank", href="https://www.glassdoor.com/Overview/Working-at-Google-EI_IE9079.htm")
-                | View Glassdoor profile
-              br
-              a(target="_blank", href="https://www.glassdoor.com/Overview/Working-at-Google-EI_IE9079.htm")
-                | View Glassdoor search
-              br
+              if glassdoorInfo === null
+                i
+                  = `No results for "${searchTerm || defaultSearchTerm}"`
+                br
+              else
+                - let glassdoorProfile = glassdoorInfo.profile;
+                = "Name: " + glassdoorProfile.name
+                br
+                = "Website: "
+                a(target="_blank", href=glassdoorProfile.website)= glassdoorProfile.website
+                br
+                = `Industry: ${glassdoorProfile.industry}`
+                br
+                = `Overall rating: ${glassdoorProfile.overallRating}/5.0 (${glassdoorProfile.numberOfRatings} ratings)`
+                br
+                = `CEO review: ${glassdoorProfile.ceo.pctApprove}% approve, ${glassdoorProfile.ceo.pctDisapprove}% disapprove (${glassdoorProfile.ceo.numberOfRatings} ratings)`
+                br
+                = `Culture and values rating: ${glassdoorProfile.cultureAndValuesRating}/5.0`
+                br
+                = `Senior leadership rating: ${glassdoorProfile.seniorLeadershipRating}/5.0`
+                br
+                = `Compensation and benefits rating: ${glassdoorProfile.compensationAndBenefitsRating}/5.0`
+                br
+                = `Career opportunities rating: ${glassdoorProfile.careerOpportunitiesRating}/5.0`
+                br
+                = `Work/Life balance rating: ${glassdoorProfile.workLifeBalanceRating}/5.0`
+                br
+                a(target="_blank", href=glassdoorProfile.url)
+                  | View Glassdoor profile
+                br
+                a(target="_blank", href=glassdoorInfo.search.url)
+                  | View Glassdoor search
+                br
               a(target="_blank", href="https://www.glassdoor.com/index.htm")
                 = "Powered by "
                 img(src="https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png", alt="Glassdoor")
