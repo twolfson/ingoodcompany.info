@@ -43,6 +43,7 @@ html(lang="en")
       .row
         .col-lg-6
           h4 Example results
+          - let searchTerm = defaultSearchTerm;
       .card: .card-body
         .row
           .col-lg-6
@@ -51,7 +52,7 @@ html(lang="en")
               br
               if glassdoorInfo === null
                 i
-                  = `No results for "${searchTerm || defaultSearchTerm}"`
+                  = `No results for "${searchTerm}"`
                 br
               else
                 - let glassdoorProfile = glassdoorInfo.profile;
@@ -91,28 +92,29 @@ html(lang="en")
               br
               u General
               br
+              - let encodedSearchTerm = encodeURIComponent(searchTerm);
               = "LinkedIn: "
-              a(target="_blank", href="https://www.linkedin.com/search/results/companies/?keywords=Google") Search
+              a(target="_blank", href=`https://www.linkedin.com/search/results/companies/?keywords=${encodedSearchTerm}`) Search
 
               br
               = "Crunchbase: "
-              a(target="_blank", href="https://www.crunchbase.com/app/search?q=Google") Search
+              a(target="_blank", href=`https://www.crunchbase.com/textsearch?q=${encodedSearchTerm}`) Search
               br
               = "AngelList: "
-              a(target="_blank", href="https://angel.co/search?type=companies&amp;q=Google") Search
+              a(target="_blank", href=`https://angel.co/search?type=companies&q=${encodedSearchTerm}`) Search
               br
               br
 
               u Programming
               br
               = "StackShare: "
-              a(target="_blank", href="https://www.linkedin.com/search/results/companies/?keywords=Google") Search
+              a(target="_blank", href=`https://stackshare.io/search/q=${encodedSearchTerm}`) Search
               br
               = "GitHub: "
-              a(target="_blank", href="https://www.linkedin.com/search/results/companies/?keywords=Google") Search
+              a(target="_blank", href=`hhttps://github.com/search?q=${encodedSearchTerm}+type%3Aorg&type=Users`) Search
+              br
               br
 
-              br
               a(href="mailto:todd@twolfson.com?subject=ingoodcompany.info%20link%20idea") Want more links? Click here to send us an email
         .text-muted
           //- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat/format
