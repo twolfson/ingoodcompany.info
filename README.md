@@ -31,6 +31,18 @@ npm start
 The server should be accessible via your browser at <http://localhost:3000/>
 
 ## Documentation
+### Architecture
+We built `ingoodcompany.info` on top of [ZEIT Now][], a serverless platform with good tooling and low friction setup
+
+In addition to this, we have the following setup and have made the following choices:
+
+- `browser/` is public facing assets (e.g. images, CSS)
+- `server/` is server-run code (e.g. models, controllers)
+- There is no database, we're relying strictly on CDN caching to align with third party rate limit expectations
+    - This may eventually require a database and queue system but we're trying to see if lower effort is tolerable for now
+
+[ZEIT Now]: https://zeit.co/now
+
 ### Development
 Our staging server doesn't cache-bust consistently (`now dev` is relatively new at the time of development). As a result, we use an `express` server with restarts powered by `nodemon` for development
 
