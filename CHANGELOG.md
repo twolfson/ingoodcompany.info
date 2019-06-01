@@ -1,4 +1,6 @@
 # ingoodcompany.info changelog
+1.0.1 - Added "Architecture" section to README
+
 1.0.0 - Added Glassdoor search functionality
 
 0.8.0 - Fixed sizing/spacing for small screens
