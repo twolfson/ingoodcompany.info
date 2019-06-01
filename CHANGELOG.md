@@ -1,4 +1,6 @@
 # ingoodcompany.info changelog
+1.3.0 - Added --meta version and git_sha to deployments
+
 1.2.1 - Added more architecture and contributing documentation
 
 1.2.0 - Added linting and CircleCI integration
