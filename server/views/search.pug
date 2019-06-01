@@ -15,6 +15,7 @@ html(lang="en")
     meta(name="msapplication-config", content="/browser/browserconfig.xml")
     meta(name="theme-color", content="#ffffff")
 
+    link(rel="stylesheet", href="/browser/css/index.css")
     //- https://getbootstrap.com/docs/4.1/getting-started/download/
     link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css", integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO", crossorigin="anonymous")
     title ingoodcompany.info - Research a company for your job search
@@ -22,28 +23,13 @@ html(lang="en")
     .container
       .row
         .col-lg-6
-          h1 ingoodcompany.info
-          h4 Research a company for your job search
-          p
-            | Look up a company by its name and get information from
-            = " "
-            a(href="https://www.glassdoor.com/") Glassdoor
-            = " as well as links to profiles on "
-            a(href="https://www.crunchbase.com/") Crunchbase
-            = ", "
-            a(href="https://www.linkedin.com/") LinkedIn
-            | , and more!
-      .row.mb-4
-        .col-lg-6
-          form
-            .form-group
-              label(for="query") Company name
-              input#query.form-control(type="text", name="query", autofocus="true", placeholder=defaultQuery, required)
-            button.btn.btn-primary(type="submit") Search
+          h1
+            a.text-default(href="/") ingoodcompany.info
+          h4.mb-4 Research a company for your job search
       .row
         .col-lg-6
-          h4 Example results
-          - let query = defaultQuery;
+          h4
+            = `Search results for: ${query}`
       .card: .card-body
         .row
           .col-lg-6
