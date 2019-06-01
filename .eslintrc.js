@@ -9,7 +9,7 @@ module.exports = {
   // Configure our environment
   // http://eslint.org/docs/user-guide/configuring#specifying-environments
   parserOptions: {
-    ecmaVersion: 8
+    ecmaVersion: 2017
   },
   env: {
     mocha: true,
