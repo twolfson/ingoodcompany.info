@@ -42,6 +42,8 @@ In addition to this, we have the following setup and have made the following cho
 - There is no database, we're relying strictly on CDN caching to align with third party rate limit expectations
   - This may eventually require a database and queue system but we're trying to see if lower effort is tolerable for now
 - CI is done via [CircleCI][] which allows for easy debugging via SSH
+- Analytics is done via Mixpanel, chosen to see if it's an improvement over Google Analytics
+  - We have analytics in general to get insight into visitor counts and site usage
 
 [ZEIT Now]: https://zeit.co/now
 [CircleCI]: http://circleci.com/
