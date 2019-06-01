@@ -25,7 +25,7 @@ html(lang="en")
           h1 ingoodcompany.info
           h4 Research a company for your job search
           p
-            | Look up a company by its website and get information from
+            | Look up a company by its name and get information from
             = " "
             a(href="https://www.glassdoor.com/") Glassdoor
             = " as well as links to profiles on "
@@ -37,13 +37,13 @@ html(lang="en")
         .col-lg-6
           form
             .form-group
-              label(for="website") Website
-              input#website.form-control(type="text", name="website", autofocus="true", placeholder=defaultSearchTerm, required)
+              label(for="query") Company name
+              input#query.form-control(type="text", name="query", autofocus="true", placeholder=defaultQuery, required)
             button.btn.btn-primary(type="submit") Search
       .row
         .col-lg-6
           h4 Example results
-          - let searchTerm = defaultSearchTerm;
+          - let query = defaultQuery;
       .card: .card-body
         .row
           .col-lg-6
@@ -52,7 +52,7 @@ html(lang="en")
               br
               if glassdoorInfo === null
                 i
-                  = `No results for "${searchTerm}"`
+                  = `No results for "${query}"`
                 br
               else
                 - let glassdoorProfile = glassdoorInfo.profile;
@@ -92,26 +92,26 @@ html(lang="en")
               br
               u General
               br
-              - let encodedSearchTerm = encodeURIComponent(searchTerm);
+              - let encodedQuery = encodeURIComponent(query);
               = "LinkedIn: "
-              a(target="_blank", href=`https://www.linkedin.com/search/results/companies/?keywords=${encodedSearchTerm}`) Search
+              a(target="_blank", href=`https://www.linkedin.com/search/results/companies/?keywords=${encodedQuery}`) Search
 
               br
               = "Crunchbase: "
-              a(target="_blank", href=`https://www.crunchbase.com/textsearch?q=${encodedSearchTerm}`) Search
+              a(target="_blank", href=`https://www.crunchbase.com/textsearch?q=${encodedQuery}`) Search
               br
               = "AngelList: "
-              a(target="_blank", href=`https://angel.co/search?type=companies&q=${encodedSearchTerm}`) Search
+              a(target="_blank", href=`https://angel.co/search?type=companies&q=${encodedQuery}`) Search
               br
               br
 
               u Programming
               br
               = "StackShare: "
-              a(target="_blank", href=`https://stackshare.io/search/q=${encodedSearchTerm}`) Search
+              a(target="_blank", href=`https://stackshare.io/search/q=${encodedQuery}`) Search
               br
               = "GitHub: "
-              a(target="_blank", href=`https://github.com/search?q=${encodedSearchTerm}+type%3Aorg&type=Users`) Search
+              a(target="_blank", href=`https://github.com/search?q=${encodedQuery}+type%3Aorg&type=Users`) Search
               br
               br
 

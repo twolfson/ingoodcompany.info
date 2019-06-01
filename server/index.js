@@ -13,7 +13,7 @@ let pugOptions = {
   pretty: !IS_PRODUCTION,
 };
 let commonLocals = {
-  defaultSearchTerm: 'google.com',
+  defaultQuery: 'Google',
   semverVersion
 };
 
@@ -26,7 +26,7 @@ async function main(req, res) {
   }
 
   // Resolve our company info
-  let glassdoorInfo = await Glassdoor.findFirstCompany(req, commonLocals.defaultSearchTerm);
+  let glassdoorInfo = await Glassdoor.findFirstCompany(req, commonLocals.defaultQuery);
 
   // Perform our render
   // DEV: We separate `compileFile` from rendering to avoid conflating options into `locals` accidentally

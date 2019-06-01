@@ -5,7 +5,7 @@ const querystring = require('querystring');
 const nextTickPromise = require('util').promisify(process.nextTick);
 
 // Define our Glassdoor resolver
-exports.findFirstCompany = async function (req, searchTerm) {
+exports.findFirstCompany = async function (req, query) {
   // Load in our required data
   let reqIp = req.headers['x-real-ip'];
   assert(reqIp, 'Missing `x-real-ip` for incoming request');
@@ -16,9 +16,9 @@ exports.findFirstCompany = async function (req, searchTerm) {
   let glassdoorApiKey = process.env.GLASSDOOR_API_KEY;
   assert(glassdoorApiKey, 'Missing `process.env.GLASSDOOR_API_KEY`');
 
-  // If there's no search term, then return nothing
+  // If there's no query, then return nothing
   // DEV: We use `nextTick` to guarantee async response time
-  if (!searchTerm) {
+  if (!query) {
     await nextTickPromise();
     return null;
   }
@@ -33,7 +33,7 @@ exports.findFirstCompany = async function (req, searchTerm) {
     userip: reqIp,
     useragent: reqUserAgent,
     action: 'employers',
-    q: searchTerm,
+    q: query,
     pn: 1, // Page number
     ps: 1, // Page size (default is 20)
   });
@@ -43,11 +43,11 @@ exports.findFirstCompany = async function (req, searchTerm) {
   // DEV: Empty responses are still successful
   //   {status: 200} + {success: true, status: 'OK', response: {'attributionURL': ..., employers: []}
   if (apiRes.status !== 200) {
-    throw new Error('Unexpected Glassdoor status (' + apiRes.status + ') for search "' + searchTerm + '". Expected 200');
+    throw new Error('Unexpected Glassdoor status (' + apiRes.status + ') for search "' + query + '". Expected 200');
   }
   let apiJson = await apiRes.json();
   if (apiJson.success !== true) {
-    throw new Error('Unexpected Glassdoor success (' + apiRes.success + ') for search "' + searchTerm + '". Expected `success: true`');
+    throw new Error('Unexpected Glassdoor success (' + apiRes.success + ') for search "' + query + '". Expected `success: true`');
   }
 
   // Unpack our data
@@ -126,6 +126,6 @@ if (require.main === module) {
       'x-now-log-id': 'BBB',
       'x-zeit-co-forwarded-for': '::ffff:127.0.0.1'
     }
-  }, 'google.com')
+  }, 'Google')
   .then(console.info);
 }
