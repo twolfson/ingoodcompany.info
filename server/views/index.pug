@@ -16,8 +16,8 @@ block content
         = ", "
         a(href="https://www.linkedin.com/") LinkedIn
         | , and more!
-  +searchForm(locals.query, {autofocus: "true"})
+  +searchForm(null, {autofocus: 'true'})
   .row
     .col-lg-6
       h4 Example results
-  +searchResults({ defaultQuery, glassdoorInfo })
+  +searchResults({ query: defaultQuery, glassdoorInfo })
