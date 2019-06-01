@@ -1,6 +1,6 @@
 {
   "name": "ingoodcompany.info",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Website to research potential employers",
   "main": "index.js",
   "scripts": {
