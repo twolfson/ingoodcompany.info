@@ -1,5 +1,6 @@
 // Load in our dependencies
 const assert = require('assert');
+const querystring = require('querystring');
 
 // Define our Glassdoor resolver
 exports.findFirstCompany = function (req, searchTerm) {
@@ -22,18 +23,20 @@ exports.findFirstCompany = function (req, searchTerm) {
     't.p': glassdoorApiId,
     't.k': glassdoorApiKey,
     userip: reqIp,
-    useragent: useragent,
+    useragent: reqUserAgent,
     action: 'employers',
     q: searchTerm,
     pn: 1, // Page number
     ps: 1, // Page size (default is 20)
   });
+  console.log(apiUrl);
 };
 
 // If we're being run directly, then run a search
+// DEV: We need to run `export $(cat .env | xargs)` first to get our environment variables
 if (require.main === module) {
   // DEV: Request info pulled from `console.log(req)` in `now dev`
-  console.log(exports.findFirstCompany({
+  console.info(exports.findFirstCompany({
     headers: {
       'user-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:67.0) Gecko/20100101 Firefox/67.0',
       accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
