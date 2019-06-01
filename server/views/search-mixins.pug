@@ -15,7 +15,7 @@ mixin searchResults({ query, glassdoorInfo })
         p
           strong Glassdoor results:
           br
-          if glassdoorInfo === null
+          if !glassdoorInfo || !glassdoorInfo.profile
             i
               = `No results for "${query}"`
             br
@@ -49,6 +49,7 @@ mixin searchResults({ query, glassdoorInfo })
             a(target="_blank", href=glassdoorProfile.url)
               | View Glassdoor profile
             br
+          if glassdoorInfo && glassdoorInfo.search
             a(target="_blank", href=glassdoorInfo.search.url)
               | View Glassdoor search
             br

@@ -86,21 +86,23 @@ exports.findFirstCompany = async function (req, query) {
   //          pctApprove: 93,
   //          pctDisapprove: 7,
   //          image: {...} } }
-  if (apiJson.response.employers.length === 0) {
-    return null;
-  }
-  let employer = apiJson.response.employers[0];
-  return {
+  let retObj = {
     search: {
       url: apiJson.response.attributionURL
     },
-    profile: Object.assign({
-      // https://www.glassdoor.com/Overview/Working-at-Google-EI_IE9079.11,17.htm
-      // DEV: We removed `11,17` as multiple numbers seem to work including none
-      url: 'https://www.glassdoor.com/Overview/Working-at-' + encodeURIComponent(employer.name) +
-        '-EI_IE' + encodeURIComponent(employer.id) + '.htm',
-    }, employer)
+    profile: null
   };
+  if (apiJson.response.employers.length === 0) {
+    return retObj;
+  }
+  let employer = apiJson.response.employers[0];
+  retObj.profile = Object.assign({
+    // https://www.glassdoor.com/Overview/Working-at-Google-EI_IE9079.11,17.htm
+    // DEV: We removed `11,17` as multiple numbers seem to work including none
+    url: 'https://www.glassdoor.com/Overview/Working-at-' + encodeURIComponent(employer.name) +
+      '-EI_IE' + encodeURIComponent(employer.id) + '.htm',
+  }, employer);
+  return retObj;
 };
 
 // If we're being run directly, then run a search
