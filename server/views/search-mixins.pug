@@ -30,7 +30,11 @@ mixin searchResults({ query, glassdoorInfo })
             br
             = `Overall rating: ${glassdoorProfile.overallRating}/5.0 (${glassdoorProfile.numberOfRatings} ratings)`
             br
-            = `CEO review: ${glassdoorProfile.ceo.pctApprove}% approve, ${glassdoorProfile.ceo.pctDisapprove}% disapprove (${glassdoorProfile.ceo.numberOfRatings} ratings)`
+            = "CEO review: "
+            if glassdoorProfile.ceo
+              = `${glassdoorProfile.ceo.pctApprove}% approve, ${glassdoorProfile.ceo.pctDisapprove}% disapprove (${glassdoorProfile.ceo.numberOfRatings} ratings)`
+            else
+              | None available
             br
             = `Culture and values rating: ${glassdoorProfile.cultureAndValuesRating}/5.0`
             br
