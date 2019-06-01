@@ -49,7 +49,58 @@ exports.findFirstCompany = async function (req, searchTerm) {
   if (apiJson.success !== true) {
     throw new Error('Unexpected Glassdoor success (' + apiRes.success + ') for search "' + searchTerm + '". Expected `success: true`');
   }
-  console.log(apiJson);
+
+  // Unpack our data
+  // apiJson = { success: true,
+  //   status: 'OK',
+  //   jsessionid: '',
+  //   response:
+  //    { attributionURL: 'https://www.glassdoor.com/Reviews/google-com-reviews-SRCH_KE0,10.htm',
+  //      currentPageNumber: 1,
+  //      totalNumberOfPages: 21,
+  //      totalRecordCount: 21,
+  //      employers: [{ id: 9079,
+  //        name: 'Google',
+  //        website: 'www.google.com',
+  //        isEEP: false,
+  //        exactMatch: false,
+  //        industry: 'Internet',
+  //        numberOfRatings: 10837,
+  //        squareLogo: 'https://media.glassdoor.com/sqll/9079/google-squarelogo-1441130773284.png',
+  //        overallRating: '4.3',
+  //        ratingDescription: 'Very Satisfied',
+  //        cultureAndValuesRating: '4.2',
+  //        seniorLeadershipRating: '3.8',
+  //        compensationAndBenefitsRating: '4.3',
+  //        careerOpportunitiesRating: '4.1',
+  //        workLifeBalanceRating: '4.1',
+  //        recommendToFriendRating: 87,
+  //        sectorId: 10013,
+  //        sectorName: 'Information Technology',
+  //        industryId: 200063,
+  //        industryName: 'Internet',
+  //        featuredReview: {...}
+  //        ceo: { name: 'Sundar Pichai',
+  //          title: 'CEO',
+  //          numberOfRatings: 3496,
+  //          pctApprove: 93,
+  //          pctDisapprove: 7,
+  //          image: {...} } }
+  if (apiJson.response.employers.length === 0) {
+    return null;
+  }
+  let employer = apiJson.response.employers[0];
+  return {
+    search: {
+      url: apiJson.response.attributionURL
+    },
+    profile: Object.assign({
+      // https://www.glassdoor.com/Overview/Working-at-Google-EI_IE9079.11,17.htm
+      // DEV: We removed `11,17` as multiple numbers seem to work including none
+      url: 'https://www.glassdoor.com/Overview/Working-at-' + encodeURIComponent(employer.name) +
+        '-EI_IE' + encodeURIComponent(employer.id) + '.htm',
+    }, employer)
+  };
 };
 
 // If we're being run directly, then run a search
@@ -75,6 +126,6 @@ if (require.main === module) {
       'x-now-log-id': 'BBB',
       'x-zeit-co-forwarded-for': '::ffff:127.0.0.1'
     }
-  }, 'Google')
+  }, 'google.com')
   .then(console.info);
 }
