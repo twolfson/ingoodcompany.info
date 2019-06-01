@@ -30,7 +30,7 @@ html(lang="en")
         .col-lg-6
           h4
             = `Search results for: ${query}`
-      .card: .card-body
+      .card.mb-4: .card-body
         .row
           .col-lg-6
             p
@@ -118,6 +118,14 @@ html(lang="en")
               timeZone: 'America/Los_Angeles'
             }).format(new Date());
           = "Last updated: " + lastUpdatedStr
+      .row
+        .col-lg-6
+          h4 Search for another company
+          form
+            .form-group
+              label(for="query") Company name
+              input#query.form-control(type="text", name="query", placeholder=defaultQuery, value=query, required)
+            button.btn.btn-primary(type="submit") Search
       hr
       p.text-center
         = "Made with "
