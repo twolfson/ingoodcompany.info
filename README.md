@@ -38,6 +38,19 @@ npm run start-dev
 
 The server should be accessible via your browser at <http://localhost:3001/>
 
+### Environment variables and secrets
+`now` is a bit tricky to work with for environment variables and secrets. To add a new environment variable:
+
+- Add to `.env` for development (e.g. `MY_ENV_VAR=foo`)
+  - This nor any similar files will not be uploaded to production based on our testing
+- Add to `now.json#env` for production
+  - If the environment variable is not a secret, then this will be `MY_ENV_VAR: 'foo'`
+  - If the environment variable is a secret, then
+    - Add our secret via `now secrets` (e.g. `now secrets add my_env_var foo` (it only takes lowercase names))
+    - Use secret in `now.json` via `MY_ENV_VAR: '@my_env_var'`
+- Relevant documentation
+  - https://zeit.co/docs/v2/deployments/environment-variables-and-secrets
+
 ### Updating favicons
 Favicons are maintained via <https://realfavicongenerator.net/> with `resources/favicon.svg`
 
