@@ -1,4 +1,6 @@
 # ingoodcompany.info changelog
+1.2.0 - Added linting and CircleCI integration
+
 1.1.1 - Fixed missing argument for production-specific logic
 
 1.1.0 - Finished implementing search
