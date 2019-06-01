@@ -8,7 +8,8 @@
     {"src": "server/index.js", "use": "@now/node"}
   ],
   "routes": [
-    {"src": "/", "dest": "/server"}
+    {"src": "/", "dest": "/server/index.js"}
+    {"src": "/search", "dest": "/server/index.js"}
   ],
 
   "env": {

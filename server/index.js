@@ -1,7 +1,9 @@
 // Load in our dependencies
 // DEV: We could increase boot time by pre-compiling all views to functions
 const Glassdoor = require('./models/glassdoor');
+const finalhandler = require('finalhandler');
 const pug = require('pug');
+const Router = require('router');
 const semverVersion = require('../package.json').version;
 
 // Define common constants
@@ -17,21 +19,27 @@ let commonLocals = {
   semverVersion
 };
 
-// Define our main handler
-async function main(req, res) {
+// Build out our router
+let router = Router();
+function setCommonCache(req) {
   // Set up caching for our response
   // https://zeit.co/docs/v2/deployments/concepts/cdn-and-global-distribution/#full-cdn
   if (IS_PRODUCTION) {
     res.setHeader('Cache-Control', `public, s-maxage=${PRODUCTION_TTL}, max-age=${PRODUCTION_TTL}`);
   }
-
-  // Resolve our company info
-  let query = commonLocals.defaultQuery;
-  let glassdoorInfo = await Glassdoor.findFirstCompany(req, query);
-
-  // Perform our render
+}
+function render(res, filepath, locals) {
   // DEV: We separate `compileFile` from rendering to avoid conflating options into `locals` accidentally
-  let indexView = pug.compileFile(__dirname + '/views/search.pug', pugOptions);
-  res.end(indexView(Object.assign({}, commonLocals, { query, glassdoorInfo })));
+  let viewFn = pug.compileFile(filepath, pugOptions);
+  return viewFn(Object.assign({}, commonLocals, locals));
+}
+router.get('/', async function rootShow (req, res) {
+  setCommonCache(req);
+  let glassdoorInfo = await Glassdoor.findFirstCompany(req, commonLocals.defaultQuery);
+  res.end(render(__dirname + '/views/index.pug', { query, glassdoorInfo }));
+});
+
+// Define our main handler
+async function main(req, res) {
 }
 module.exports = main;
