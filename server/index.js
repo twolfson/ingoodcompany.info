@@ -16,9 +16,9 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 app.locals = {
   defaultQuery: 'Google',
-  semverVersion,
+  MIXPANEL_TOKEN: process.env.MIXPANEL_TOKEN,
   pretty: !IS_PRODUCTION,
-  MIXPANEL_PRODUCTION_TOKEN: process.env.MIXPANEL_PRODUCTION_TOKEN,
+  semverVersion,
 };
 
 // Define our routes
