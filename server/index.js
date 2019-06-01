@@ -21,7 +21,7 @@ app.locals = {
 };
 
 // Define our routes
-function setCommonCache(req) {
+function setCommonCache(res) {
   // Set up caching for our response
   // https://zeit.co/docs/v2/deployments/concepts/cdn-and-global-distribution/#full-cdn
   if (IS_PRODUCTION) {
@@ -29,12 +29,12 @@ function setCommonCache(req) {
   }
 }
 app.get('/', callbackify(async function rootShow (req, res) {
-  setCommonCache(req);
+  setCommonCache(res);
   let glassdoorInfo = await Glassdoor.findFirstCompany(req, app.locals.defaultQuery);
   res.render('index', { glassdoorInfo });
 }));
 app.get('/search', callbackify(async function searchShow (req, res) {
-  setCommonCache(req);
+  setCommonCache(res);
   let query = req.query.query || '';
   let glassdoorInfo = await Glassdoor.findFirstCompany(req, query);
   res.render('search', { query, glassdoorInfo });
