@@ -3,6 +3,8 @@
 const pug = require('pug');
 const semverVersion = require('../package.json').version;
 
+console.log('FOO', process.env.FOO);
+
 // Define common constants
 // DEV: NODE_ENV is set up by `now` (e.g. `development`, `production`)
 const PRODUCTION_TTL = 10 * 60; // 10 minutes
