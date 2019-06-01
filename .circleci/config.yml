@@ -18,7 +18,7 @@ jobs:
             # Fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      # Install our and save them for future usage
+      # Install our dependencies and save them for future usage
       - run: npm install
       - save_cache:
           paths:

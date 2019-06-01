@@ -1,4 +1,4 @@
-# ingoodcompany.info [![Build status](https://travis-ci.org/twolfson/ingoodcompany.info.svg?branch=master)](https://travis-ci.org/twolfson/ingoodcompany.info)
+# ingoodcompany.info [![Build status](https://circleci.com/gh/twolfson/ingoodcompany.info/tree/master.svg?style=svg)](https://circleci.com/gh/twolfson/ingoodcompany.info/tree/master)
 
 Website to research potential employers, [ingoodcompany.info][]
 
