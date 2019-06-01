@@ -44,7 +44,7 @@ In addition to this, we have the following setup and have made the following cho
 [ZEIT Now]: https://zeit.co/now
 
 ### Development
-Our staging server doesn't cache-bust consistently (`now dev` is relatively new at the time of development). As a result, we use an `express` server with restarts powered by `nodemon` for development
+`now dev` doesn't cache-bust consistently. As a result, we use an `express` server with restarts powered by `nodemon` for development
 
 To run our development server, run the following:
 
@@ -62,8 +62,8 @@ The server should be accessible via your browser at <http://localhost:3001/>
   - This nor any similar files will not be uploaded to production based on our testing
 - Add to `now.json#env` for production
   - If the environment variable is not a secret, then this will be `MY_ENV_VAR: 'foo'`
-  - If the environment variable is a secret, then
-    - Add our secret via `now secrets` (e.g. `now secrets add my_env_var foo` (it only takes lowercase names))
+  - If the environment variable is a secret, then:
+    - Add our secret via `now secrets` (e.g. `now secrets add my_env_var foo`)
     - Use secret in `now.json` via `MY_ENV_VAR: '@my_env_var'`
 - Relevant documentation
   - https://zeit.co/docs/v2/deployments/environment-variables-and-secrets
