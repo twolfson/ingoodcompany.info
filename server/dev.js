@@ -2,21 +2,13 @@
 // Compiling during development will load everything via JS
 
 // Load in our dependencies
+const baseApp = require('./index');
 const express = require('express');
 
 // Define our port
 const PORT = 3001;
 
-// Define an async error handler
-function catchAsyncError(fn) {
-  return function catchAsyncErrorFn (req, res, next) {
-    fn(req, res)
-      .then(next)
-      .catch(next);
-  };
-}
-
-// Create and start our server
+// Wrap our server with CDN logic and start listening
 function main() {
   let app = express();
   app.use(function addProxyHeaders (req, res, next) {
@@ -24,8 +16,8 @@ function main() {
     req.headers['x-real-ip'] = req.ip;
     next();
   });
-  app.get('/', catchAsyncError(require('./index.js')));
   app.use('/browser', express.static(__dirname + '/../browser'));
+  app.use(baseApp);
 
   app.listen(PORT, '127.0.0.1');
   console.log(`Server listening at http://localhost:${PORT}/`);

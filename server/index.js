@@ -1,5 +1,6 @@
 // Load in our dependencies
 // DEV: We could increase boot time by pre-compiling all views to functions
+const callbackify = require('util').callbackify;
 const Glassdoor = require('./models/glassdoor');
 const express = require('express');
 const semverVersion = require('../package.json').version;
@@ -26,13 +27,13 @@ function setCommonCache(req) {
     res.setHeader('Cache-Control', `public, s-maxage=${PRODUCTION_TTL}, max-age=${PRODUCTION_TTL}`);
   }
 }
-app.get('/', async function rootShow (req, res) {
+app.get('/', callbackify(async function rootShow (req, res) {
   setCommonCache(req);
-  let glassdoorInfo = await Glassdoor.findFirstCompany(req, commonLocals.defaultQuery);
-  res.render('index', { query, glassdoorInfo }));
+  let glassdoorInfo = await Glassdoor.findFirstCompany(req, app.locals.defaultQuery);
+  res.render('index', { glassdoorInfo });
   // let glassdoorInfo = await Glassdoor.findFirstCompany(req, query);
   // res.render('index', { query, glassdoorInfo }));
-});
+}));
 
 // Export our app as our module.exports
 module.exports = app;
