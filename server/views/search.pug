@@ -9,6 +9,9 @@ block analytics
     mixpanel.track('Performed search', {
       query: '#{query}'
     });
+    mixpanel.track_links('.search-results', 'Clicked search results link', {
+      query: '#{query}'
+    });
 
 block content
   +pageHeading()

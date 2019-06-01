@@ -7,6 +7,7 @@ block title
 block analytics
   script.
     mixpanel.track('Visited root');
+    mixpanel.track_links('.search-results', 'Clicked default search results link');
 
 block content
   +pageHeading({includeDescription: true})
