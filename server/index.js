@@ -1,5 +1,6 @@
 // Load in our dependencies
 // DEV: We could increase boot time by pre-compiling all views to functions
+const Glassdoor = require('./models/glassoor');
 const pug = require('pug');
 const semverVersion = require('../package.json').version;
 
@@ -14,15 +15,15 @@ let pugOptions = {
 let commonLocals = { semverVersion };
 
 // Define our main handler
-function main(req, res) {
+async function main(req, res) {
   // Set up caching for our response
   // https://zeit.co/docs/v2/deployments/concepts/cdn-and-global-distribution/#full-cdn
   if (IS_PRODUCTION) {
     res.setHeader('Cache-Control', `public, s-maxage=${PRODUCTION_TTL}, max-age=${PRODUCTION_TTL}`);
   }
 
-  console.log(req.ip);
-  console.log(req.headers);
+  // Resolve our company info
+  console.log(await Glassdoor.findFirstCompany(req, 'Google'));
 
   // Perform our render
   // DEV: We separate `compileFile` from rendering to avoid conflating options into `locals` accidentally
