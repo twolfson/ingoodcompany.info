@@ -1,4 +1,6 @@
 # ingoodcompany.info changelog
+1.4.1 - Fixed globstar to resolve `browser/css/index.css` properly
+
 1.4.0 - Added analytics via Mixpanel
 
 1.3.0 - Added --meta version and git_sha to deployments
