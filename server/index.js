@@ -3,8 +3,6 @@
 const pug = require('pug');
 const semverVersion = require('../package.json').version;
 
-console.log('FOO', process.env.FOO);
-
 // Define common constants
 // DEV: NODE_ENV is set up by `now` (e.g. `development`, `production`)
 const PRODUCTION_TTL = 10 * 60; // 10 minutes
@@ -22,6 +20,9 @@ function main(req, res) {
   if (IS_PRODUCTION) {
     res.setHeader('Cache-Control', `public, s-maxage=${PRODUCTION_TTL}, max-age=${PRODUCTION_TTL}`);
   }
+
+  console.log(req.ip);
+  console.log(req.headers);
 
   // Perform our render
   // DEV: We separate `compileFile` from rendering to avoid conflating options into `locals` accidentally
