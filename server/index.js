@@ -1,6 +1,6 @@
 // Load in our dependencies
 // DEV: We could increase boot time by pre-compiling all views to functions
-const Glassdoor = require('./models/glassoor');
+const Glassdoor = require('./models/glassdoor');
 const pug = require('pug');
 const semverVersion = require('../package.json').version;
 

@@ -1,9 +1,10 @@
 // Load in our dependencies
 const assert = require('assert');
 const querystring = require('querystring');
+const nextTickPromise = require('util').promisify(process.nextTick);
 
 // Define our Glassdoor resolver
-exports.findFirstCompany = function (req, searchTerm) {
+exports.findFirstCompany = async function (req, searchTerm) {
   // Load in our required data
   let reqIp = req.headers['x-real-ip'];
   assert(reqIp, 'Missing `x-real-ip` for incoming request');
@@ -14,7 +15,11 @@ exports.findFirstCompany = function (req, searchTerm) {
   let glassdoorApiKey = process.env.GLASSDOOR_API_KEY;
   assert(glassdoorApiKey, 'Missing `process.env.GLASSDOOR_API_KEY`');
 
-  // TODO: If there's no search term, then return nothing
+  // If there's no search term, then return nothing
+  if (!searchTerm) {
+    await nextTickPromise();
+    return null;
+  }
 
   // https://www.glassdoor.com/developer/companiesApiActions.htm
   let apiUrl = 'https://api.glassdoor.com/api/api.htm?' + querystring.stringify({
