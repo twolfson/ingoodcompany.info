@@ -16,6 +16,7 @@ exports.findFirstCompany = async function (req, searchTerm) {
   assert(glassdoorApiKey, 'Missing `process.env.GLASSDOOR_API_KEY`');
 
   // If there's no search term, then return nothing
+  // DEV: We use `nextTick` to guarantee async response time
   if (!searchTerm) {
     await nextTickPromise();
     return null;
@@ -34,7 +35,6 @@ exports.findFirstCompany = async function (req, searchTerm) {
     pn: 1, // Page number
     ps: 1, // Page size (default is 20)
   });
-  console.log(apiUrl);
 };
 
 // If we're being run directly, then run a search

@@ -10,6 +10,11 @@ const PORT = 3001;
 // Create and start our server
 function main() {
   let app = express();
+  app.use(function addProxyHeaders (req, res, next) {
+    // https://github.com/zeit/now-cli/blob/15.3.0/src/commands/dev/lib/dev-server.ts#L588-L602
+    req.headers['x-real-ip'] = req.ip;
+    next();
+  });
   app.get('/', require('./index.js'));
   app.use('/browser', express.static(__dirname + '/../browser'));
 
