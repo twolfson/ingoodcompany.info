@@ -18,6 +18,11 @@ cd ingoodcompany.info
 # Install our dependencies
 npm install
 
+# Create a `.env` file based on `now.json` contents
+#   https://zeit.co/docs/v2/deployments/environment-variables-and-secrets
+#   Sorry, no secrets provided =(
+pico .env
+
 # Run the server
 npm start
 # Ready! Available at http://localhost:3000
