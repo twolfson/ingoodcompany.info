@@ -25,7 +25,14 @@ html(lang="en")
         .col-lg-6
           h1
             a.text-default(href="/") ingoodcompany.info
-          h4.mb-4 Research a company for your job search
+          h4.mb-3 Research a company for your job search
+      .row.mb-4
+        .col-lg-6
+          form
+            .form-group
+              label(for="query") Company name
+              input#query.form-control(type="text", name="query", placeholder=defaultQuery, value=query, required)
+            button.btn.btn-primary(type="submit") Search
       .row
         .col-lg-6
           h4
@@ -118,14 +125,6 @@ html(lang="en")
               timeZone: 'America/Los_Angeles'
             }).format(new Date());
           = "Last updated: " + lastUpdatedStr
-      .row
-        .col-lg-6
-          .h4 Search for another company
-          form
-            .form-group
-              label(for="query") Company name
-              input#query.form-control(type="text", name="query", placeholder=defaultQuery, value=query, required)
-            button.btn.btn-primary(type="submit") Search
       hr
       p.text-center
         = "Made with "
