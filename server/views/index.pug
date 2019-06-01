@@ -4,6 +4,10 @@ include search-mixins.pug
 block title
   title ingoodcompany.info - Research a company for your job search
 
+block analytics
+  script.
+    mixpanel.track('Visited root');
+
 block content
   +pageHeading({includeDescription: true})
   +searchForm(null, {autofocus: 'true'})

@@ -18,6 +18,7 @@ app.locals = {
   defaultQuery: 'Google',
   semverVersion,
   pretty: !IS_PRODUCTION,
+  MIXPANEL_PRODUCTION_TOKEN: process.env.MIXPANEL_PRODUCTION_TOKEN,
 };
 
 // Define our routes

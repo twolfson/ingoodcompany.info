@@ -4,6 +4,12 @@ include search-mixins.pug
 block title
   title= `Search results for ${query} - ingoodcompany.info`
 
+block analytics
+  script.
+    mixpanel.track('Performed search', {
+      query: query
+    });
+
 block content
   +pageHeading()
   +searchForm(query)
