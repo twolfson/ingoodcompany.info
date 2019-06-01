@@ -16,7 +16,8 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 app.locals = {
   defaultQuery: 'Google',
-  semverVersion
+  semverVersion,
+  pretty: !IS_PRODUCTION
 };
 
 // Define our routes
