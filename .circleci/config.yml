@@ -1,0 +1,29 @@
+# Based on provided example in CircleCI
+version: 2
+jobs:
+  build:
+    docker:
+      # https://zeit.co/docs/v2/deployments/official-builders/node-js-now-node/#node.js-version
+      - image: circleci/node:8.10
+
+    working_directory: ~/ingoodcompany.info
+
+    steps:
+      - checkout
+
+      # Download cached dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # Fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      # Install our and save them for future usage
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      # Run our tests
+      - run: npm test
