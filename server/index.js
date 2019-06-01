@@ -1,6 +1,5 @@
 // Load in our dependencies
 // DEV: We could increase boot time by pre-compiling all views to functions
-const callbackify = require('util').callbackify;
 const Glassdoor = require('./models/glassdoor');
 const express = require('express');
 const semverVersion = require('../package.json').version;
@@ -22,6 +21,13 @@ app.locals = {
 };
 
 // Define our routes
+function wrapAsyncRoute(fn) {
+  return function wrapAsyncRouteFn(req, res, next) {
+    // DEV: We don't call `.then(next)` as `res.render` will have completed
+    //   and `next()` will try to run `finalhandler` which has more headers/body
+    fn(req, res).catch(next);
+  };
+}
 function setCommonCache(res) {
   // Set up caching for our response
   // https://zeit.co/docs/v2/deployments/concepts/cdn-and-global-distribution/#full-cdn
@@ -29,12 +35,12 @@ function setCommonCache(res) {
     res.setHeader('Cache-Control', `public, s-maxage=${PRODUCTION_TTL}, max-age=${PRODUCTION_TTL}`);
   }
 }
-app.get('/', callbackify(async function rootShow(req, res) {
+app.get('/', wrapAsyncRoute(async function rootShow(req, res) {
   setCommonCache(res);
   let glassdoorInfo = await Glassdoor.findFirstCompany(req, app.locals.defaultQuery);
   res.render('index', {glassdoorInfo});
 }));
-app.get('/search', callbackify(async function searchShow(req, res) {
+app.get('/search', wrapAsyncRoute(async function searchShow(req, res) {
   setCommonCache(res);
   let query = req.query.query || '';
   let glassdoorInfo = await Glassdoor.findFirstCompany(req, query);
