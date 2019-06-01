@@ -26,11 +26,12 @@ async function main(req, res) {
   }
 
   // Resolve our company info
-  let glassdoorInfo = await Glassdoor.findFirstCompany(req, commonLocals.defaultQuery);
+  let query = commonLocals.defaultQuery;
+  let glassdoorInfo = await Glassdoor.findFirstCompany(req, query);
 
   // Perform our render
   // DEV: We separate `compileFile` from rendering to avoid conflating options into `locals` accidentally
-  let indexView = pug.compileFile(__dirname + '/views/index.pug', pugOptions);
-  res.end(indexView(Object.assign({}, commonLocals, { glassdoorInfo })));
+  let indexView = pug.compileFile(__dirname + '/views/search.pug', pugOptions);
+  res.end(indexView(Object.assign({}, commonLocals, { query, glassdoorInfo })));
 }
 module.exports = main;
