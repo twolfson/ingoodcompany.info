@@ -40,8 +40,10 @@ In addition to this, we have the following setup and have made the following cho
 - `server/` is server-run code (e.g. models, controllers)
 - There is no database, we're relying strictly on CDN caching to align with third party rate limit expectations
     - This may eventually require a database and queue system but we're trying to see if lower effort is tolerable for now
+- CI is done via [CircleCI][] which allows for easy debugging via SSH
 
 [ZEIT Now]: https://zeit.co/now
+[CircleCI]: http://circleci.com/
 
 ### Development
 `now dev` doesn't cache-bust consistently. As a result, we use an `express` server with restarts powered by `nodemon` for development
@@ -89,7 +91,7 @@ foundry release <version>
 ```
 
 ## Contributing
-*Coming soon!*
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via `npm run lint` and test via `npm test`.
 
 ## Donating
 Support this project and [others by twolfson][twolfson-projects] via [donations][twolfson-support-me].
