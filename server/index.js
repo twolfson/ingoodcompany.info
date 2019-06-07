@@ -45,7 +45,6 @@ function setCommonCache(res) {
   }
 }
 app.get('/', wrapAsyncRoute(async function rootShow(req, res) {
-  throw new Error('Test errorB');
   setCommonCache(res);
   let glassdoorInfo = await Glassdoor.findFirstCompany(req, app.locals.defaultQuery);
   res.render('index', {glassdoorInfo});
