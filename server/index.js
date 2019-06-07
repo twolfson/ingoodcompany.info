@@ -26,11 +26,8 @@ app.locals = {
 // DEV: This must come before all other middlewares
 const SENTRY_SERVER_DSN = process.env.SENTRY_SERVER_DSN;
 assert(SENTRY_SERVER_DSN);
-Sentry.init({ dsn: SENTRY_SERVER_DSN, debug: true });
+Sentry.init({dsn: SENTRY_SERVER_DSN});
 app.use(Sentry.Handlers.requestHandler());
-'d';
-
-// https://spectrum.chat/zeit/now/does-now-sh-supports-sentry-io-for-tracking-errors~385d04d5-1bc3-4a99-921b-47cb045f80f6
 
 // Define our routes
 function wrapAsyncRoute(fn) {
@@ -47,25 +44,8 @@ function setCommonCache(res) {
     res.setHeader('Cache-Control', `public, s-maxage=${PRODUCTION_TTL}, max-age=${PRODUCTION_TTL}`);
   }
 }
-// process.nextTick(() => {
-  // global.process.on('uncaughtException', () => {});
-  // const util = require('util');
-  // console.log(util.inspect(process.listeners('uncaughtException')));
-  // console.log(process.listeners('internalMessage')[0] + '');
-  // console.log(process.eventNames());
-// });
-// Sentry.captureException(new Error('Test error3'));
-console.log(process.listeners('uncaughtException'));
-// process.nextTick(() => {
-//   throw new Error('Test error');
-// });
 app.get('/', wrapAsyncRoute(async function rootShow(req, res) {
-  // process.nextTick(() => {
   throw new Error('Test error7');
-  // });
-  // console.log(process.listeners('uncaughtException')[0] + '');
-  // throw new Error('Test error4');
-  // throw new Error('My first Sentry error!');
   setCommonCache(res);
   let glassdoorInfo = await Glassdoor.findFirstCompany(req, app.locals.defaultQuery);
   res.render('index', {glassdoorInfo});
@@ -81,6 +61,7 @@ app.get('/search', wrapAsyncRoute(async function searchShow(req, res) {
 // DEV: This must come after all our controllers but before any other error middleware
 app.use(Sentry.Handlers.errorHandler());
 
+// https://spectrum.chat/zeit/now/does-now-sh-supports-sentry-io-for-tracking-errors~385d04d5-1bc3-4a99-921b-47cb045f80f6
 // https://github.com/getsentry/sentry-javascript/issues/1449#issuecomment-424600862
 app.use(function (err, req, res, next) {
   Sentry.getCurrentHub().getClient().close(500 /* ms */).then(() => { next(err); });
