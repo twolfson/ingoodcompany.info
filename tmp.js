@@ -1,8 +1,11 @@
+const assert = require('assert');
 const express = require('express');
 const app = express();
 const Sentry = require('@sentry/node');
 
-Sentry.init({ dsn: process.env.SENTRY_SERVER_DSN });
+const SENTRY_SERVER_DSN = process.env.SENTRY_SERVER_DSN;
+assert(SENTRY_SERVER_DSN);
+Sentry.init({ dsn: SENTRY_SERVER_DSN });
 
 // The request handler must be the first middleware on the app
 app.use(Sentry.Handlers.requestHandler());
@@ -16,6 +19,10 @@ app.use(function onError(err, req, res, next) {
   // and optionally displayed to the user for support.
   res.statusCode = 500;
   res.end(res.sentry + "\n");
+});
+
+app.get('/debug-sentry', function mainHandler(req, res) {
+  throw new Error('My first Sentry error!');
 });
 
 app.listen(3000);
