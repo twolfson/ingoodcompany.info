@@ -45,7 +45,7 @@ function setCommonCache(res) {
   }
 }
 app.get('/', wrapAsyncRoute(async function rootShow(req, res) {
-  throw new Error('Test error7');
+  throw new Error('Test errorB');
   setCommonCache(res);
   let glassdoorInfo = await Glassdoor.findFirstCompany(req, app.locals.defaultQuery);
   res.render('index', {glassdoorInfo});
@@ -61,10 +61,14 @@ app.get('/search', wrapAsyncRoute(async function searchShow(req, res) {
 // DEV: This must come after all our controllers but before any other error middleware
 app.use(Sentry.Handlers.errorHandler());
 
-// https://spectrum.chat/zeit/now/does-now-sh-supports-sentry-io-for-tracking-errors~385d04d5-1bc3-4a99-921b-47cb045f80f6
-// https://github.com/getsentry/sentry-javascript/issues/1449#issuecomment-424600862
+// Add forced flush to Sentry upon request error as they don't always get reported
+//   https://spectrum.chat/zeit/now/does-now-sh-supports-sentry-io-for-tracking-errors~385d04d5-1bc3-4a99-921b-47cb045f80f6
+//   https://github.com/getsentry/sentry-javascript/issues/1449#issuecomment-424600862
 app.use(function (err, req, res, next) {
-  Sentry.getCurrentHub().getClient().close(500 /* ms */).then(() => { next(err); });
+  // DEV: We use `flush` as `close` disables the client which can be bad in shared environments
+  Sentry.getCurrentHub().getClient().flush(2000 /* ms */).then(() => {
+    next(err);
+  });
 });
 
 // Export our app as our module.exports
