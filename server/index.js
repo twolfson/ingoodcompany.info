@@ -26,7 +26,10 @@ app.locals = {
 // DEV: This must come before all other middlewares
 const SENTRY_SERVER_DSN = process.env.SENTRY_SERVER_DSN;
 assert(SENTRY_SERVER_DSN);
-Sentry.init({dsn: SENTRY_SERVER_DSN});
+Sentry.init({
+  dsn: SENTRY_SERVER_DSN,
+  environment: process.env.NODE_ENV,
+});
 app.use(Sentry.Handlers.requestHandler());
 
 // Define our routes

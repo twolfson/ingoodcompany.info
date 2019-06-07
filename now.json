@@ -16,6 +16,7 @@
     "GLASSDOOR_API_ID": "@glassdoor_api_id",
     "GLASSDOOR_API_KEY": "@glassdoor_api_key",
     "MIXPANEL_TOKEN": "32432a6e4e759eea7f34708ae4110105",
+    "NODE_ENV": "production",
     "SENTRY_SERVER_DSN": "@sentry_server_dsn"
   }
 }
