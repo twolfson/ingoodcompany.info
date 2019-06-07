@@ -10,8 +10,6 @@ const Sentry = require('@sentry/node');
 // DEV: NODE_ENV is set up by `now` (e.g. `development`, `production`)
 const PRODUCTION_TTL = 10 * 60; // 10 minutes
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
-const SENTRY_SERVER_DSN = process.env.SENTRY_SERVER_DSN;
-assert(SENTRY_SERVER_DSN);
 
 // Build out our app
 var app = express();
@@ -26,6 +24,9 @@ app.locals = {
 
 // Set up the first part of our Sentry handler
 // DEV: This must come before all other middlewares
+const SENTRY_SERVER_DSN = process.env.SENTRY_SERVER_DSN;
+assert(SENTRY_SERVER_DSN);
+Sentry.init({ dsn: SENTRY_SERVER_DSN });
 app.use(Sentry.Handlers.requestHandler());
 
 // Define our routes
