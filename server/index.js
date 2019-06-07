@@ -4,6 +4,7 @@ const assert = require('assert');
 const Glassdoor = require('./models/glassdoor');
 const express = require('express');
 const semverVersion = require('../package.json').version;
+const Sentry = require('@sentry/node');
 
 // Define common constants
 // DEV: NODE_ENV is set up by `now` (e.g. `development`, `production`)
@@ -43,6 +44,7 @@ function setCommonCache(res) {
   }
 }
 app.get('/', wrapAsyncRoute(async function rootShow(req, res) {
+  throw new Error('My first Sentry error!');
   setCommonCache(res);
   let glassdoorInfo = await Glassdoor.findFirstCompany(req, app.locals.defaultQuery);
   res.render('index', {glassdoorInfo});
@@ -53,9 +55,6 @@ app.get('/search', wrapAsyncRoute(async function searchShow(req, res) {
   let glassdoorInfo = await Glassdoor.findFirstCompany(req, query);
   res.render('search', {query, glassdoorInfo});
 }));
-app.get('/debug-sentry', function mainHandler(req, res) {
-  throw new Error('My first Sentry error!');
-});
 
 // Set up the last part of our Sentry handler
 // DEV: This must come after all our controllers but before any other error middleware
