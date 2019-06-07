@@ -1,4 +1,6 @@
 # ingoodcompany.info changelog
+1.5.0 - Added server-side error reporting via Sentry
+
 1.4.1 - Fixed globstar to resolve `browser/css/index.css` properly
 
 1.4.0 - Added analytics via Mixpanel
