@@ -35,7 +35,7 @@
     "foundry-release-git": "~2.0.3",
     "foundry-release-npm": "~2.0.2",
     "nodemon": "~1.19.1",
-    "now": "~15.3.0"
+    "now": "~15.4.0"
   },
   "foundry": {
     "releaseCommands": [
