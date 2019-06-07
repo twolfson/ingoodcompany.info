@@ -25,8 +25,7 @@
     "@sentry/node": "~5.4.0",
     "express": "~4.17.1",
     "node-fetch": "~2.6.0",
-    "pug": "~2.0.3",
-    "raven": "~2.6.4"
+    "pug": "~2.0.3"
   },
   "devDependencies": {
     "eslint": "~5.16.0",
