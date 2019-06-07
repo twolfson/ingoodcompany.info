@@ -22,7 +22,9 @@ app.use(function onError(err, req, res, next) {
 });
 
 app.get('/debug-sentry', function mainHandler(req, res) {
-  throw new Error('My first Sentry error!');
+  process.nextTick(() => {
+    throw new Error('My first Sentry error!');
+  });
 });
 
 app.listen(3000);
