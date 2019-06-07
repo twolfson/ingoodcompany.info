@@ -44,9 +44,10 @@ function setCommonCache(res) {
     res.setHeader('Cache-Control', `public, s-maxage=${PRODUCTION_TTL}, max-age=${PRODUCTION_TTL}`);
   }
 }
-throw new Error('Test error');
+Sentry.captureException(new Error('Test error3'));
+// throw new Error('Test error');
 app.get('/', wrapAsyncRoute(async function rootShow(req, res) {
-  throw new Error('My first Sentry error!');
+  // throw new Error('My first Sentry error!');
   setCommonCache(res);
   let glassdoorInfo = await Glassdoor.findFirstCompany(req, app.locals.defaultQuery);
   res.render('index', {glassdoorInfo});
