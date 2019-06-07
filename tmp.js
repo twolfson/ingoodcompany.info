@@ -13,6 +13,13 @@ Raven.config(SENTRY_SERVER_DSN).install();
 // app.use(Sentry.Handlers.requestHandler());
 app.use(Raven.requestHandler());
 
+
+app.get('/debug-sentry', function mainHandler(req, res) {
+  // process.nextTick(() => {
+    throw new Error('My first Sentry error!');
+  // });
+});
+
 // The error handler must be before any other error middleware
 // app.use(Sentry.Handlers.errorHandler());
 app.use(Raven.errorHandler());
@@ -24,13 +31,6 @@ app.use(function onError(err, req, res, next) {
   res.statusCode = 500;
   res.end(res.sentry + "\n");
 });
-
-app.get('/debug-sentry', function mainHandler(req, res) {
-  // process.nextTick(() => {
-    throw new Error('My first Sentry error!');
-  // });
-});
-
 
 app.listen(3000);
 
