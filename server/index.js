@@ -61,7 +61,7 @@ console.log(process.listeners('uncaughtException'));
 // });
 app.get('/', wrapAsyncRoute(async function rootShow(req, res) {
   // process.nextTick(() => {
-  throw new Error('Test error6');
+  throw new Error('Test error7');
   // });
   // console.log(process.listeners('uncaughtException')[0] + '');
   // throw new Error('Test error4');
@@ -80,6 +80,11 @@ app.get('/search', wrapAsyncRoute(async function searchShow(req, res) {
 // Set up the last part of our Sentry handler
 // DEV: This must come after all our controllers but before any other error middleware
 app.use(Sentry.Handlers.errorHandler());
+
+// https://github.com/getsentry/sentry-javascript/issues/1449#issuecomment-424600862
+app.use(function (err, req, res, next) {
+  Sentry.getCurrentHub().getClient().close(500 /* ms */).then(() => { next(err); });
+});
 
 // Export our app as our module.exports
 module.exports = app;
