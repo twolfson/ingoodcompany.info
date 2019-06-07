@@ -28,7 +28,10 @@ const SENTRY_SERVER_DSN = process.env.SENTRY_SERVER_DSN;
 assert(SENTRY_SERVER_DSN);
 Sentry.init({ dsn: SENTRY_SERVER_DSN, debug: true });
 app.use(Sentry.Handlers.requestHandler());
-'b';
+'d';
+
+// https://spectrum.chat/zeit/now/does-now-sh-supports-sentry-io-for-tracking-errors~385d04d5-1bc3-4a99-921b-47cb045f80f6
+
 // Define our routes
 function wrapAsyncRoute(fn) {
   return function wrapAsyncRouteFn(req, res, next) {
@@ -53,10 +56,13 @@ function setCommonCache(res) {
 // });
 // Sentry.captureException(new Error('Test error3'));
 console.log(process.listeners('uncaughtException'));
-process.nextTick(() => {
-  throw new Error('Test error');
-});
+// process.nextTick(() => {
+//   throw new Error('Test error');
+// });
 app.get('/', wrapAsyncRoute(async function rootShow(req, res) {
+  // process.nextTick(() => {
+  throw new Error('Test error6');
+  // });
   // console.log(process.listeners('uncaughtException')[0] + '');
   // throw new Error('Test error4');
   // throw new Error('My first Sentry error!');
