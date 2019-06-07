@@ -26,9 +26,9 @@ app.locals = {
 // DEV: This must come before all other middlewares
 const SENTRY_SERVER_DSN = process.env.SENTRY_SERVER_DSN;
 assert(SENTRY_SERVER_DSN);
-Sentry.init({ dsn: SENTRY_SERVER_DSN });
+Sentry.init({ dsn: SENTRY_SERVER_DSN, debug: true });
 app.use(Sentry.Handlers.requestHandler());
-
+'b';
 // Define our routes
 function wrapAsyncRoute(fn) {
   return function wrapAsyncRouteFn(req, res, next) {
@@ -44,9 +44,21 @@ function setCommonCache(res) {
     res.setHeader('Cache-Control', `public, s-maxage=${PRODUCTION_TTL}, max-age=${PRODUCTION_TTL}`);
   }
 }
-Sentry.captureException(new Error('Test error3'));
-// throw new Error('Test error');
+// process.nextTick(() => {
+  // global.process.on('uncaughtException', () => {});
+  // const util = require('util');
+  // console.log(util.inspect(process.listeners('uncaughtException')));
+  // console.log(process.listeners('internalMessage')[0] + '');
+  // console.log(process.eventNames());
+// });
+// Sentry.captureException(new Error('Test error3'));
+console.log(process.listeners('uncaughtException'));
+process.nextTick(() => {
+  throw new Error('Test error');
+});
 app.get('/', wrapAsyncRoute(async function rootShow(req, res) {
+  // console.log(process.listeners('uncaughtException')[0] + '');
+  // throw new Error('Test error4');
   // throw new Error('My first Sentry error!');
   setCommonCache(res);
   let glassdoorInfo = await Glassdoor.findFirstCompany(req, app.locals.defaultQuery);
