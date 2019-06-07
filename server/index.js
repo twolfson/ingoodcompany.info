@@ -1,5 +1,6 @@
 // Load in our dependencies
 // DEV: We could increase boot time by pre-compiling all views to functions
+const assert = require('assert');
 const Glassdoor = require('./models/glassdoor');
 const express = require('express');
 const semverVersion = require('../package.json').version;
@@ -8,6 +9,8 @@ const semverVersion = require('../package.json').version;
 // DEV: NODE_ENV is set up by `now` (e.g. `development`, `production`)
 const PRODUCTION_TTL = 10 * 60; // 10 minutes
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+const SENTRY_SERVER_DSN = process.env.SENTRY_SERVER_DSN;
+assert(SENTRY_SERVER_DSN);
 
 // Build out our app
 var app = express();
@@ -19,6 +22,10 @@ app.locals = {
   pretty: !IS_PRODUCTION,
   semverVersion,
 };
+
+// Set up the first part of our Sentry handler
+// DEV: This must come before all other middlewares
+app.use(Sentry.Handlers.requestHandler());
 
 // Define our routes
 function wrapAsyncRoute(fn) {
@@ -46,6 +53,13 @@ app.get('/search', wrapAsyncRoute(async function searchShow(req, res) {
   let glassdoorInfo = await Glassdoor.findFirstCompany(req, query);
   res.render('search', {query, glassdoorInfo});
 }));
+app.get('/debug-sentry', function mainHandler(req, res) {
+  throw new Error('My first Sentry error!');
+});
+
+// Set up the last part of our Sentry handler
+// DEV: This must come after all our controllers but before any other error middleware
+app.use(Sentry.Handlers.errorHandler());
 
 // Export our app as our module.exports
 module.exports = app;
