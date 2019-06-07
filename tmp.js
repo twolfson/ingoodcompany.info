@@ -13,6 +13,9 @@ Raven.config(SENTRY_SERVER_DSN).install();
 // app.use(Sentry.Handlers.requestHandler());
 app.use(Raven.requestHandler());
 
+// The error handler must be before any other error middleware
+// app.use(Sentry.Handlers.errorHandler());
+app.use(Raven.errorHandler());
 
 // Optional fallthrough error handler
 app.use(function onError(err, req, res, next) {
@@ -28,9 +31,6 @@ app.get('/debug-sentry', function mainHandler(req, res) {
   // });
 });
 
-// The error handler must be before any other error middleware
-// app.use(Sentry.Handlers.errorHandler());
-app.use(Raven.errorHandler());
 
 app.listen(3000);
 
