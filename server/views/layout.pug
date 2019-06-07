@@ -21,6 +21,14 @@ html(lang="en")
     //- https://getbootstrap.com/docs/4.1/getting-started/download/
     link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css", integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO", crossorigin="anonymous")
 
+    //- Set up error reporting
+    script(src="https://browser.sentry-cdn.com/5.4.0/bundle.min.js", crossorigin="anonymous")
+    script.
+      Sentry.init({
+        dsn: 'https://dff1d0b86f85428684f38f6169630744@sentry.io/1477159',
+        environment: '#{NODE_ENV}'
+      });
+
     //- Copy/paste from Mixpanel, https://mixpanel.com/report/1978957/setup/quick/
     script.
       (function(c,a){if(!a.__SV){var b=window;try{var d,m,j,k=b.location,f=k.hash;d=function(a,b){return(m=a.match(RegExp(b+"=([^&]*)")))?m[1]:null};f&&d(f,"state")&&(j=JSON.parse(decodeURIComponent(d(f,"state"))),"mpeditor"===j.action&&(b.sessionStorage.setItem("_mpcehash",f),history.replaceState(j.desiredHash||"",c.title,k.pathname+k.search)))}catch(n){}var l,h;window.mixpanel=a;a._i=[];a.init=function(b,d,g){function c(b,i){var a=i.split(".");2==a.length&&(b=b[a[0]],i=a[1]);b[i]=function(){b.push([i].concat(Array.prototype.slice.call(arguments,

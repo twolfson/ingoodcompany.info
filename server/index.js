@@ -19,6 +19,7 @@ app.locals = {
   defaultQuery: 'Google',
   MIXPANEL_TOKEN: process.env.MIXPANEL_TOKEN,
   pretty: !IS_PRODUCTION,
+  NODE_ENV: process.env.NODE_ENV,
   semverVersion,
 };
 
