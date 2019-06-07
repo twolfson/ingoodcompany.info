@@ -44,6 +44,7 @@ function setCommonCache(res) {
     res.setHeader('Cache-Control', `public, s-maxage=${PRODUCTION_TTL}, max-age=${PRODUCTION_TTL}`);
   }
 }
+throw new Error('Test error');
 app.get('/', wrapAsyncRoute(async function rootShow(req, res) {
   throw new Error('My first Sentry error!');
   setCommonCache(res);
