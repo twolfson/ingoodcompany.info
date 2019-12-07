@@ -1,4 +1,6 @@
 # ingoodcompany.info changelog
+1.6.1 - Fixed bad `.forEach` directly on a DOM collection. Fixes https://sentry.io/organizations/twolfson/issues/1375896312/?project=1477159
+
 1.6.0 - Added browser-side error reporting via Sentry
 
 1.5.0 - Added server-side error reporting via Sentry
