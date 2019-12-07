@@ -9,7 +9,7 @@ block analytics
     mixpanel.track('Visited root');
     // DEV: `mixpanel.track_links` was loading `/undefined` for our blank links so we're sidestepping it
     window.addEventListener('DOMContentLoaded', function handleDOMContentLoaded (evt) {
-      document.querySelectorAll('.search-results a[target=_blank]').forEach(function (linkEl) {
+      [].forEach.call(document.querySelectorAll('.search-results a[target=_blank]'), function (linkEl) {
         linkEl.addEventListener('click', function handleClick (evt) {
           mixpanel.track('Clicked default search results link');
         });
