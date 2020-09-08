@@ -25,11 +25,12 @@ html(lang="en")
 
     //- Set up error reporting
     script(src="https://browser.sentry-cdn.com/5.4.0/bundle.min.js", crossorigin="anonymous")
-    script.
-      Sentry.init({
-        dsn: 'https://dff1d0b86f85428684f38f6169630744@sentry.io/1477159',
-        environment: '#{NODE_ENV}'
-      });
+    if NODE_ENV === 'production'
+      script.
+        Sentry.init({
+          dsn: 'https://dff1d0b86f85428684f38f6169630744@sentry.io/1477159',
+          environment: '#{NODE_ENV}'
+        });
 
     //- Copy/paste from Mixpanel, https://mixpanel.com/report/1978957/setup/quick/
     script.
