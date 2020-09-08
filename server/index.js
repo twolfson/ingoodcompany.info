@@ -63,6 +63,7 @@ app.get('/search', wrapAsyncRoute(async function searchShow(req, res) {
   let glassdoorInfo = await Glassdoor.findFirstCompany(req, query);
   res.render('search', {query, glassdoorInfo});
 }));
+app.use('/', express.static(__dirname + '/../browser/root'));
 
 // Set up the last part of our Sentry handler
 // DEV: This must come after all our controllers but before any other error middleware
