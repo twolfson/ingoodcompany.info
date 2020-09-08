@@ -2,7 +2,41 @@ extends layout.pug
 include search-mixins.pug
 
 block seo
-  title ingoodcompany.info - Research a company for your job search
+  //- Based on: https://github.com/twolfson/mentor.twolfson.com/blob/2020.0905.2041/server/index.pug#L3-L37
+  //- https://www.searchenginewatch.com/2018/04/04/a-quick-and-easy-guide-to-meta-tags-in-seo/
+  //- https://moz.com/blog/the-ultimate-guide-to-seo-meta-tags
+  //- https://ahrefs.com/blog/seo-meta-tags/#meta-refresh-redirect
+  - let pageTitle = 'Research a company for your job search - ingoodcompany.info';
+  - let pageDescription = 'Look up a company by its name and get information from Glassdoor, Crunchbase, LinkedIn, and more!';
+  title= pageTitle
+  meta(name="description" content=pageDescription)
+  meta(name="robots" content="index, follow")
+  //- Omitting keywords as per recommendations, feels weird
+  //- SEO, Twitter: https://moz.com/blog/meta-data-templates-123
+  //-   DEV: Without this, we get no link at all
+  //-   https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/markup
+  meta(name="twitter:card" content="summary")
+  meta(name="twitter:site" content="@twolfsn")
+  meta(name="twitter:title" content=pageTitle)
+  meta(name="twitter:description" content=pageDescription)
+  meta(name="twitter:creator" content="@twolfsn")
+  //- Twitter Summary card images must be at least 120x120px
+  // Logo by Made by Made from the Noun Project, https://thenounproject.com/made.somewhere/uploads/?i=707660
+  meta(name="twitter:image" content="https://ingoodcompany.ingoodcompany/images/logo.svg")
+  meta(name="twitter:image:alt" content="ingoodcompany.info logo")
+  //- SEO, Facebook: https://moz.com/blog/meta-data-templates-123
+  //-   DEV: Without this, only page title and URL
+  //-   https://developers.facebook.com/docs/sharing/webmasters#basic
+  //-   https://developers.facebook.com/docs/sharing/best-practices#images
+  meta(property="og:title" content=pageTitle)
+  meta(property="og:type" content="article")
+  meta(property="og:url" content="https://ingoodcompany.info/")
+    //- They recommend super high-res images, I'm maxing out at 600px as 1080px is ridiculous
+  meta(property="og:image" content="https://ingoodcompany.ingoodcompany/images/logo.svg")
+  meta(property="og:description" content=pageDescription)
+  //- Not required despite Moz recommendation, there is now an `fb:app_id` but we lack that
+  //- meta(property="og:site_name" content="Site Name, i.e. Moz")
+  //- meta(property="fb:admins" content="Facebook numeric ID")
 
 block analytics
   script.
