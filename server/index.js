@@ -32,6 +32,8 @@ if (IS_PRODUCTION) {
     dsn: SENTRY_SERVER_DSN,
     environment: process.env.NODE_ENV,
   });
+} else {
+  Sentry.init();
 }
 app.use(Sentry.Handlers.requestHandler());
 
