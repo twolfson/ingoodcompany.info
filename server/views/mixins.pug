@@ -2,9 +2,9 @@ mixin pageHeading(options)
   - options = options || {};
   .row
     .col-lg-6
-      h1
+      h2.h1
         a.text-default(href="/") ingoodcompany.info
-      h4(class=options.includeDescription ? null : 'mb-3') Research a company for your job search
+      h1.h4(class=options.includeDescription ? null : 'mb-3') Research a company for your job search
       if options.includeDescription
         p
           | Look up a company by its name and get information from

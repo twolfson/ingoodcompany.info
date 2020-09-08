@@ -1,7 +1,5 @@
 {
   "version": 2,
-
-  "name": "ingoodcompany.info",
   "alias": "ingoodcompany.info",
   "builds": [
     {"src": "browser/**", "use": "@now/static"},
@@ -9,7 +7,12 @@
   ],
   "routes": [
     {"src": "/", "dest": "/server/index.js"},
-    {"src": "/search", "dest": "/server/index.js"}
+    {"src": "/search", "dest": "/server/index.js"},
+
+    {"src": "/browserconfig.xml", "dest": "/server/index.js"},
+    {"src": "/favicon.ico", "dest": "/server/index.js"},
+    {"src": "/robots.txt", "dest": "/server/index.js"},
+    {"src": "/site.webmanifest", "dest": "/server/index.js"}
   ],
 
   "env": {

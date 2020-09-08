@@ -1,0 +1,6 @@
+# Pages are disallowed via meta tags
+User-agent: *
+Allow: /
+
+# No sitemap for now, all pages are interlinked
+# Sitemap: https://ingoodcompany.info/sitemap.txt

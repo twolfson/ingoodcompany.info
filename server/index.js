@@ -27,10 +27,14 @@ app.locals = {
 // DEV: This must come before all other middlewares
 const SENTRY_SERVER_DSN = process.env.SENTRY_SERVER_DSN;
 assert(SENTRY_SERVER_DSN);
-Sentry.init({
-  dsn: SENTRY_SERVER_DSN,
-  environment: process.env.NODE_ENV,
-});
+if (IS_PRODUCTION) {
+  Sentry.init({
+    dsn: SENTRY_SERVER_DSN,
+    environment: process.env.NODE_ENV,
+  });
+} else {
+  Sentry.init();
+}
 app.use(Sentry.Handlers.requestHandler());
 
 // Define our routes
@@ -59,6 +63,7 @@ app.get('/search', wrapAsyncRoute(async function searchShow(req, res) {
   let glassdoorInfo = await Glassdoor.findFirstCompany(req, query);
   res.render('search', {query, glassdoorInfo});
 }));
+app.use('/', express.static(__dirname + '/../browser/root'));
 
 // Set up the last part of our Sentry handler
 // DEV: This must come after all our controllers but before any other error middleware
