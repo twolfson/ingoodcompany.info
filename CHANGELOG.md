@@ -1,4 +1,6 @@
 # ingoodcompany.info changelog
+1.7.0 - Added SEO and sharing tags/file
+
 1.6.2 - Updated `yarn.lock` via GitHub automated vulnerability patches in #1
 
 1.6.1 - Fixed bad `.forEach` directly on a DOM collection. Fixes https://sentry.io/organizations/twolfson/issues/1375896312/?project=1477159
