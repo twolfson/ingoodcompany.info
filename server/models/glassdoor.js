@@ -43,10 +43,7 @@ exports.findFirstCompany = async function (req, query) {
   // DEV: Empty responses are still successful
   //   {status: 200} + {success: true, status: 'OK', response: {'attributionURL': ..., employers: []}
   if (apiRes.status !== 200) {
-    var err = new Error('Unexpected Glassdoor status (' + apiRes.status + ') for search "' + query + '". Expected 200');
-    err.body = await apiRes.text();
-    console.error(err.body);
-    throw err;
+    throw new Error('Unexpected Glassdoor status (' + apiRes.status + ') for search "' + query + '". Expected 200');
   }
   let apiJson = await apiRes.json();
   if (apiJson.success !== true) {
