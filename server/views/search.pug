@@ -2,7 +2,28 @@ extends layout.pug
 include search-mixins.pug
 
 block seo
-  title= `Search results for ${query} - ingoodcompany.info`
+  //- Disable indexing but encourage sharing
+  - let pageTitle = `Company info for ${query} - ingoodcompany.info`;
+  - let pageDescription = 'Look up a company by its name and get information from Glassdoor, Crunchbase, LinkedIn, and more!';
+  title= pageTitle
+  meta(name="description" content=pageDescription)
+  meta(name="robots" content="noindex")
+
+  meta(name="twitter:card" content="summary")
+  meta(name="twitter:site" content="@twolfsn")
+  meta(name="twitter:title" content=pageTitle)
+  meta(name="twitter:description" content=pageDescription)
+  meta(name="twitter:creator" content="@twolfsn")
+
+  // Logo by Made by Made from the Noun Project, https://thenounproject.com/made.somewhere/uploads/?i=707660
+  meta(name="twitter:image" content="https://ingoodcompany.info/browser/images/logo-120.png")
+  meta(name="twitter:image:alt" content="ingoodcompany.info logo")
+
+  meta(property="og:title" content=pageTitle)
+  meta(property="og:type" content="article")
+  meta(property="og:url" content="https://ingoodcompany.info/")
+  meta(property="og:image" content="https://ingoodcompany.info/browser/images/logo-600.png")
+  meta(property="og:description" content=pageDescription)
 
 block analytics
   script.
