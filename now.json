@@ -1,7 +1,5 @@
 {
   "version": 2,
-
-  "name": "ingoodcompany.info",
   "alias": "ingoodcompany.info",
   "builds": [
     {"src": "browser/**", "use": "@now/static"},
