@@ -42,7 +42,7 @@
       "foundry-release-npm",
       {
         "type": "customCommand",
-        "publish": "now --target production --meta version=\"$FOUNDRY_VERSION\" --meta git_sha=$(git rev-parse HEAD)"
+        "publish": "now --target prod --meta version=\"$FOUNDRY_VERSION\" --meta git_sha=$(git rev-parse HEAD)"
       }
     ]
   }
