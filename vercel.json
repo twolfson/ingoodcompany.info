@@ -2,8 +2,8 @@
   "version": 2,
   "alias": "ingoodcompany.info",
   "builds": [
-    {"src": "browser/**", "use": "@now/static"},
-    {"src": "server/index.js", "use": "@now/node"}
+    {"src": "browser/**", "use": "@vercel/static"},
+    {"src": "server/index.js", "use": "@vercel/node"}
   ],
   "routes": [
     {"src": "/", "dest": "/server/index.js"},
