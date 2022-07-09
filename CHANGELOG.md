@@ -1,4 +1,6 @@
 # ingoodcompany.info changelog
+1.7.2 - Upgraded to vercel@27 to fix deployments further
+
 1.7.1 - Upgraded to now@21 to fix deployment trigger
 
 1.7.0 - Added SEO and sharing tags/file
