@@ -45,7 +45,7 @@
       "foundry-release-npm",
       {
         "type": "customCommand",
-        "publish": "vercel --target prod --meta version=\"$FOUNDRY_VERSION\" --meta git_sha=$(git rev-parse HEAD)"
+        "publish": "vercel --prod --meta version=\"$FOUNDRY_VERSION\" --meta git_sha=$(git rev-parse HEAD)"
       }
     ]
   }
