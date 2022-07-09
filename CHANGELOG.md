@@ -1,4 +1,6 @@
 # ingoodcompany.info changelog
+1.7.1 - Upgraded to now@21 to fix deployment trigger
+
 1.7.0 - Added SEO and sharing tags/file
 
 1.6.2 - Updated `yarn.lock` via GitHub automated vulnerability patches in #1
