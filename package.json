@@ -7,6 +7,9 @@
     "precheck": "eslint server/",
     "lint": "eslint server/ --max-warnings 0",
     "start": "vercel dev",
+    "_deploy-comment": "Deployments seem to take a bit to warm up. Wait for 1 minute before panic quitting",
+    "deploy-preview": "vercel",
+    "deploy-production": "echo \"Use command found in 'package.json#foundry.releaseCommands'\"",
     "start-dev": "export $(cat .env | xargs) && nodemon server/dev.js",
     "test": "npm run lint"
   },
