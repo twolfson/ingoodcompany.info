@@ -9,7 +9,8 @@
     "start": "vercel dev",
     "_deploy-comment": "Deployments seem to take a bit to warm up. Wait for 1 minute before panic quitting",
     "_deploy-comment2": "Deployment progress viewed at https://vercel.com/twolfson/ingoodcompany.info/deployments",
-    "deploy-preview": "vercel",
+    "_deploy-comment3": "Use --archive tgz to sidestep \"`files` should not have more than\" message, https://github.com/vercel/vercel/discussions/5464",
+    "deploy-preview": "vercel --archive tgz",
     "deploy-production": "echo \"Use command found in 'package.json#foundry.releaseCommands'\"",
     "start-dev": "export $(cat .env | xargs) && nodemon server/dev.js",
     "test": "npm run lint"
