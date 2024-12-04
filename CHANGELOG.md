@@ -1,4 +1,6 @@
 # ingoodcompany.info changelog
+1.7.3 - Upgraded to vercel@39 to handle Node.js@16 deprecation, updated docs, and removed some legacy (not all) vercel.json
+
 1.7.2 - Upgraded to vercel@27 to fix deployments further
 
 1.7.1 - Upgraded to now@21 to fix deployment trigger
