@@ -2,10 +2,10 @@
 
 Website to research potential employers, [ingoodcompany.info][]
 
-[findwork.co][] might be shutting down soon. If that's the case, then we'd like to preserve the company research feature elsewhere as we've found its information to be invaluable during past searches (quickly surfaced compatibility information)
+This was an invaluable piece of [findwork.co][] that we wanted to preserve despite shutting down the broader site. It helps to quickly surface company compatibility information
 
 [ingoodcompany.info]: https://ingoodcompany.info/
-[findwork.co]: https://findwork.co/
+[findwork.co]: https://web.archive.org/web/20180829191029/https://findwork.co/
 
 ## Getting started
 To run our staging server locally, run the following:
