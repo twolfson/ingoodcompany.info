@@ -1,4 +1,9 @@
 {
+  "_vercel-comment": [
+    "We know `builds` and `routes` are deprecated but `builds` requires creating `package.json#build`",
+    "and we're no longer familiar with the `routes` redirect creation purposes (may be Vercel workaround, who knows)",
+    "but for now -- this update on 2024-12-03 seems to work, so this is \"good enough\""
+  ],
   "builds": [
     {"src": "browser/**", "use": "@vercel/static"},
     {"src": "server/index.js", "use": "@vercel/node"}
@@ -11,5 +16,5 @@
     {"src": "/favicon.ico", "dest": "/server/index.js"},
     {"src": "/robots.txt", "dest": "/server/index.js"},
     {"src": "/site.webmanifest", "dest": "/server/index.js"}
-  ],
+  ]
 }
