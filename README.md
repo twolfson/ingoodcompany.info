@@ -18,10 +18,10 @@ cd ingoodcompany.info
 # Install our dependencies
 yarn install
 
-# Create a `.env.local` file based on our example
+# Create a `.env` file based on our example
 #   Sorry, no secrets provided =(
-cp .env.local.example .env.local
-pico .env.local
+cp .env.example .env
+pico .env
 
 # Run the Vercel server locally
 yarn start
@@ -63,7 +63,7 @@ The server should be accessible via your browser at <http://localhost:3001/>
 ### Environment variables and secrets
 To add a new environment variable:
 
-- For development, add to `.env.local` (e.g. `MY_ENV_VAR=foo`)
+- For development, add to `.env` (e.g. `MY_ENV_VAR=foo`)
   - This will not be uploaded to production based on our testing
 - For production, add the secret via [Vercel's UI](https://vercel.com/docs/projects/environment-variables/managing-environment-variables#declare-an-environment-variable)
 - Relevant documentation
