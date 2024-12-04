@@ -23,7 +23,7 @@ npm install
 #   Sorry, no secrets provided =(
 pico .env
 
-# Run the server
+# Run the Vercel server locally
 npm start
 # Ready! Available at http://localhost:3000
 ```
