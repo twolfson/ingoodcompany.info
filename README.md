@@ -16,7 +16,7 @@ git clone https://github.com/twolfson/ingoodcompany.info
 cd ingoodcompany.info
 
 # Install our dependencies
-npm install
+yarn install
 
 # Create a `.env.local` file based on our example
 #   Sorry, no secrets provided =(
@@ -24,7 +24,7 @@ cp .env.local.example .env.local
 pico .env.local
 
 # Run the Vercel server locally
-npm start
+yarn start
 # Ready! Available at http://localhost:3000
 ```
 
@@ -54,7 +54,7 @@ As of May 31 2019, `vercel dev` doesn't cache-bust consistently. As a result, we
 To run our development server, run the following:
 
 ```bash
-npm run start-dev
+yarn run start-dev
 # Server listening at http://localhost:3001/
 ```
 
@@ -90,7 +90,7 @@ foundry release <version>
 ```
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via `npm run lint` and test via `npm test`.
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via `yarn run lint` and test via `yarn test`.
 
 ## Donating
 Support this project and [others by twolfson][twolfson-projects] via [donations][twolfson-support-me].
